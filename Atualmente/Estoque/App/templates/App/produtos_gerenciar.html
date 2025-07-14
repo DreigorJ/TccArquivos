@@ -1,0 +1,97 @@
+{% extends "App/base.html" %}
+{% block title %}Gerenciar Produtos{% endblock %}
+{% block conteudo %}
+<h2 class="mb-4">Produtos cadastrados</h2>
+
+{% if avisos_cota_minima %}
+    <div class="alert alert-warning">
+        <strong>Atenção!</strong>
+        {% for aviso in avisos_cota_minima %}
+            O produto <b>{{ aviso.produto_nome }}</b> está abaixo da cota mínima ({{ aviso.saldo_atual }}/{{ aviso.minimo }}).<br>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Marca</th>
+            <th>Qtd. em estoque</th>
+            <th>Preço total</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for info in produtos_info %}
+        <tr id="produto-row-{{ info.produto.id }}">
+            <td>{{ info.produto.nome }}</td>
+            <td>{% if info.produto.categoria %}{{ info.produto.categoria.nome }}{% else %}<span class="text-muted">Sem categoria</span>{% endif %}</td>
+            <td>{{ info.produto.marca }}</td>
+            <td>{{ info.saldo }}</td>
+            <td>R$ {{ info.preco_total|floatformat:2 }}</td>
+            <td>
+                <a href="{% url 'produto_update' estoque.id info.produto.id %}" class="btn btn-sm btn-primary">Editar</a>
+                <button type="button" class="btn btn-sm btn-danger"
+                        onclick="confirmDeleteProduto('{{ info.produto.id }}', '{{ info.produto.nome }}')">
+                    Remover
+                </button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a class="btn btn-success mt-3" href="{% url 'produto_create' estoque.id %}">Adicionar Produto</a>
+
+<!-- Modal para remoção -->
+<div class="modal fade" id="deleteProdutoModal" tabindex="-1" aria-labelledby="deleteProdutoModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteProdutoModalLabel">Remover Produto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        Tem certeza que deseja remover o produto <b id="produto-nome"></b>?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteProdutoBtn">Remover</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% block scripts %}
+<script>
+let produtoIdToDelete = null;
+function confirmDeleteProduto(id, nome) {
+    produtoIdToDelete = id;
+    document.getElementById('produto-nome').textContent = nome;
+    var modal = new bootstrap.Modal(document.getElementById('deleteProdutoModal'));
+    modal.show();
+}
+document.getElementById('confirmDeleteProdutoBtn').onclick = function() {
+    if (produtoIdToDelete) {
+        fetch(`/estoque/{{ estoque.id }}/produto/${produtoIdToDelete}/remover/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById('produto-row-' + produtoIdToDelete).remove();
+            } else {
+                alert('Erro ao remover produto!');
+            }
+            var modal = bootstrap.Modal.getInstance(document.getElementById('deleteProdutoModal'));
+            modal.hide();
+        });
+    }
+};
+</script>
+{% endblock %}
+{% endblock %}

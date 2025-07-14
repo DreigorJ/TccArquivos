@@ -1,0 +1,106 @@
+{% extends "App/base.html" %}
+{% block title %}Gerenciar Métricas{% endblock %}
+
+{% block conteudo %}
+<h2 class="mb-4">Métricas cadastradas</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Código</th>
+            <th>Fixa?</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for metrica in metricas %}
+        <tr id="metrica-row-{{ metrica.id }}">
+            <td>{{ metrica.nome }}</td>
+            <td>{{ metrica.codigo }}</td>
+            <td>{% if metrica.fixa %}Sim{% else %}Não{% endif %}</td>
+            <td>
+                {% if estoque_atual and estoque_atual.id %}
+                    <a href="{% url 'metrica_update' metrica.id estoque_atual.id %}" class="btn btn-sm btn-primary">Editar</a>
+                {% else %}
+                    <a href="{% url 'metrica_update' metrica.id %}" class="btn btn-sm btn-primary">Editar</a>
+                {% endif %}
+                <button type="button" class="btn btn-sm btn-danger"
+                        onclick="confirmDeleteMetrica('{{ metrica.id }}', '{{ metrica.nome }}')">
+                    Remover
+                </button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Popup de confirmação -->
+<div class="modal fade" id="deleteMetricaModal" tabindex="-1" aria-labelledby="deleteMetricaModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteMetricaModalLabel">Remover Métrica</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        Tem certeza que deseja remover a métrica <b id="metrica-nome"></b>?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Remover</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Formulário de adicionar nova métrica -->
+<h3 class="mt-5 mb-3">Adicionar nova métrica</h3>
+<form method="post">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-5">
+            <input type="text" name="nome_metrica" class="form-control" placeholder="Nome da métrica" required>
+        </div>
+        <div class="col-md-4">
+            <input type="text" name="codigo_metrica" class="form-control" placeholder="Código da métrica" required>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-success">Adicionar</button>
+        </div>
+    </div>
+</form>
+
+<script>
+let metricaIdToDelete = null;
+function confirmDeleteMetrica(id, nome) {
+    metricaIdToDelete = id;
+    document.getElementById('metrica-nome').textContent = nome;
+    var modal = new bootstrap.Modal(document.getElementById('deleteMetricaModal'));
+    modal.show();
+}
+
+document.getElementById('confirmDeleteBtn').onclick = function() {
+    if (metricaIdToDelete) {
+        fetch(`/metrica/${metricaIdToDelete}/remover/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Remove a linha da tabela
+                document.getElementById('metrica-row-' + metricaIdToDelete).remove();
+            } else {
+                alert('Erro ao remover métrica!');
+            }
+            // Fecha o modal
+            var modal = bootstrap.Modal.getInstance(document.getElementById('deleteMetricaModal'));
+            modal.hide();
+        });
+    }
+};
+</script>
+{% endblock %}

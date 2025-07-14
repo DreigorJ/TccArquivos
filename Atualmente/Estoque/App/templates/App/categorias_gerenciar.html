@@ -1,0 +1,92 @@
+{% extends "App/base.html" %}
+{% block title %}Gerenciar Categorias{% endblock %}
+
+{% block conteudo %}
+<h2 class="mb-4">Categorias cadastradas</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for categoria in categorias %}
+        <tr id="categoria-row-{{ categoria.id }}">
+            <td>{{ categoria.nome }}</td>
+            <td>
+                <a href="{% url 'categoria_update' estoque.id categoria.id %}" class="btn btn-sm btn-primary">Editar</a>
+                <button type="button" class="btn btn-sm btn-danger"
+                        onclick="confirmDeleteCategoria('{{ categoria.id }}', '{{ categoria.nome }}')">
+                    Remover
+                </button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Modal de confirmação para deletar -->
+<div class="modal fade" id="deleteCategoriaModal" tabindex="-1" aria-labelledby="deleteCategoriaModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteCategoriaModalLabel">Remover Categoria</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        Tem certeza que deseja remover a categoria <b id="categoria-nome"></b>?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteCategoriaBtn">Remover</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3 class="mt-5 mb-3">Adicionar nova categoria</h3>
+<form method="post">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-7">
+            <input type="text" name="nome_categoria" class="form-control" placeholder="Nome da categoria" required>
+        </div>
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-success">Adicionar</button>
+        </div>
+    </div>
+</form>
+
+<script>
+let categoriaIdToDelete = null;
+function confirmDeleteCategoria(id, nome) {
+    categoriaIdToDelete = id;
+    document.getElementById('categoria-nome').textContent = nome;
+    var modal = new bootstrap.Modal(document.getElementById('deleteCategoriaModal'));
+    modal.show();
+}
+
+document.getElementById('confirmDeleteCategoriaBtn').onclick = function() {
+    if (categoriaIdToDelete) {
+        fetch(`/categoria/{{ estoque.id }}/${categoriaIdToDelete}/remover/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById('categoria-row-' + categoriaIdToDelete).remove();
+            } else {
+                alert('Erro ao remover categoria!');
+            }
+            var modal = bootstrap.Modal.getInstance(document.getElementById('deleteCategoriaModal'));
+            modal.hide();
+        });
+    }
+};
+</script>
+{% endblock %}

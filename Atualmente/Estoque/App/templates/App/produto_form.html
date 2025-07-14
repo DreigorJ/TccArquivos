@@ -1,0 +1,80 @@
+{% extends "App/base.html" %}
+{% block title %}{% if produto %}Editar Produto{% else %}Novo Produto{% endif %}{% endblock %}
+{% block conteudo %}
+<h2 class="mb-4">{% if produto %}Editar Produto{% else %}Novo Produto{% endif %}</h2>
+<form method="post">
+    {% csrf_token %}
+    {% if form.errors %}
+    <div class="alert alert-danger">
+      <ul>
+        {% for field in form %}
+          {% for error in field.errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    <div class="mb-3">
+        <label for="{{ form.nome.id_for_label }}">Nome</label>
+        {{ form.nome }}
+    </div>
+    <div class="mb-3">
+        <label for="{{ form.categoria.id_for_label }}">Categoria</label>
+        {{ form.categoria }}
+    </div>
+    <div class="mb-3">
+        <label for="{{ form.marca.id_for_label }}">Marca</label>
+        {{ form.marca }}
+    </div>
+    <div class="mb-3">
+        <label for="{{ form.unidades.id_for_label }}">Quantidade</label>
+        {{ form.unidades }}
+    </div>
+    <div class="mb-3">
+        <label for="{{ form.preco.id_for_label }}">Preço unitário</label>
+        {{ form.preco }}
+    </div>
+    <div class="mb-3">
+        <label for="{{ form.data_validade.id_for_label }}">Validade</label>
+        {{ form.data_validade }}
+    </div>
+    <div class="mb-3">
+        <label for="{{ form.metrica.id_for_label }}">Métrica</label>
+        {{ form.metrica }}
+    </div>
+    <div class="form-check mb-3">
+        {{ form.precisa_alerta_cota }}
+        <label for="{{ form.precisa_alerta_cota.id_for_label }}">Precisa alerta de cota mínima?</label>
+    </div>
+    <div id="cota-minima-campo" class="mb-3" style="{% if produto and not produto.precisa_alerta_cota %}display:none;{% endif %}">
+        <label for="{{ form.cota_minima.id_for_label }}">Cota mínima</label>
+        {{ form.cota_minima }}
+    </div>
+    <button type="submit" class="btn btn-success">{% if produto %}Salvar Alterações{% else %}Cadastrar{% endif %}</button>
+    <a href="{% url 'produtos_gerenciar' estoque.id %}" class="btn btn-secondary">Voltar</a>
+</form>
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Busca o checkbox pelo nome do campo, para funcionar em todos casos
+    const checkbox = document.querySelector('input[name="precisa_alerta_cota"]');
+    const cotaDiv = document.getElementById("cota-minima-campo");
+    function toggleCotaMinima() {
+        if (checkbox && checkbox.checked) {
+            cotaDiv.style.display = "block";
+        } else {
+            cotaDiv.style.display = "none";
+        }
+    }
+    if (checkbox) {
+        checkbox.addEventListener('change', toggleCotaMinima);
+        toggleCotaMinima();
+    }
+});
+</script>
+{% endblock %}
+{% endblock %}

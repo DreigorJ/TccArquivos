@@ -1,0 +1,11 @@
+{% extends 'App/base.html' %}
+{% block title %}Remover Categoria{% endblock %}
+{% block conteudo %}
+    <h2>Remover categoria: "{{ categoria.nome }}"</h2>
+    <p>Tem certeza que deseja remover esta categoria do estoque "{{ estoque.nome }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Remover</button>
+        <a href="{% url 'estoque_dashboard' estoque.id %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+{% endblock %}
