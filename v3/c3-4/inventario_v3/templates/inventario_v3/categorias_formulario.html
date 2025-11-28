@@ -1,0 +1,34 @@
+{% extends "inventario_v3/base.html" %}
+{% block content %}
+  <h1>{% if object %}Editar Categoria{% else %}Nova Categoria{% endif %}</h1>
+
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+      <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+    {% endif %}
+    <div class="mb-3">
+      {{ form.nome.label_tag }}
+      {{ form.nome }}
+      {% if form.nome.errors %}
+        <div class="text-danger">{{ form.nome.errors }}</div>
+      {% endif %}
+    </div>
+    <div class="mb-3">
+      {{ form.descricao.label_tag }}
+      {{ form.descricao }}
+      {% if form.descricao.errors %}
+        <div class="text-danger">{{ form.descricao.errors }}</div>
+      {% endif %}
+    </div>
+    <div class="form-check mb-3">
+      {{ form.ativo }} {{ form.ativo.label_tag }}
+      {% if form.ativo.errors %}
+        <div class="text-danger">{{ form.ativo.errors }}</div>
+      {% endif %}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a class="btn btn-secondary" href="{% url 'inventario_v3:categorias_lista' %}">Cancelar</a>
+  </form>
+{% endblock %}

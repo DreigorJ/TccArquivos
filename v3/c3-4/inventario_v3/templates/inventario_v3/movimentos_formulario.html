@@ -1,0 +1,13 @@
+{% extends "inventario_v3/base.html" %}
+{% block content %}
+  <h2>Registrar movimentação para {{ produto.nome }}</h2>
+
+  <form method="post">{% csrf_token %}
+    {{ form.non_field_errors }}
+    <table>
+      {{ form.as_table }}
+    </table>
+    <button type="submit" class="btn btn-primary">Registrar</button>
+    <a class="btn btn-secondary" href="{% url 'inventario_v3:produtos_descricao' produto.pk %}">Cancelar</a>
+  </form>
+{% endblock %}

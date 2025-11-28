@@ -1,0 +1,17 @@
+{% extends "inventario_v3/base.html" %}
+{% block content %}
+  <h2>{% if form.instance.pk %}Editar{% else %}Adicionar{% endif %} Produto</h2>
+  <form method="post">{% csrf_token %}
+    <table>
+      {{ form.as_table }}
+      {% if form.instance.pk %}
+      <tr>
+        <th>Quantidade</th>
+        <td>{{ form.instance.quantidade }}</td>
+      </tr>
+      {% endif %}
+    </table>
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a class="btn btn-secondary" href="{% url 'inventario_v3:produtos_lista' %}">Cancelar</a>
+  </form>
+{% endblock %}

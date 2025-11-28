@@ -1,0 +1,33 @@
+{% extends "inventario_v3/base.html" %}
+{% load static %}
+{% block content %}
+  <h1>Relatórios</h1>
+
+  <form method="post" action="{% url 'inventario_v3:relatorios' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Gerar relatórios</button>
+  </form>
+
+  {% if messages %}
+    <ul class="messages">
+      {% for m in messages %}
+        <li class="alert {% if m.tags %}alert-{{ m.tags }}{% endif %}">{{ m }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  <div id="reports" class="mt-3">
+    {% if reports %}
+      {% for r in reports %}
+        <div class="report mb-4">
+          <h3>{{ r.name }}</h3>
+          <div>
+            <img src="{{ r.url }}" alt="{{ r.name }}" style="max-width:100%; height:auto; border:1px solid #ddd; padding:4px;">
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>Nenhum relatório encontrado. Rode o comando <code>python manage.py gerar_relatorio --out resultados/reports</code> ou clique em "Gerar relatórios".</p>
+    {% endif %}
+  </div>
+{% endblock %}

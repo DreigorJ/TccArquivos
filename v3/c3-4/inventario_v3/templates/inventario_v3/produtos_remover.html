@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>Confirmar exclusão</title>
+</head>
+<body>
+  <h1>Confirmar exclusão do produto</h1>
+  <p>Tem certeza que deseja excluir: <strong>{{ object }}</strong> ?</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Sim, excluir</button>
+    <a href="{% url 'inventario_v3:produtos_descricao' object.pk %}">Cancelar</a>
+  </form>
+</body>
+</html>
