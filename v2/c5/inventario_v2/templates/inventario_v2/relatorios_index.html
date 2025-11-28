@@ -1,0 +1,55 @@
+```html
+{% extends "inventario_v2/base.html" %}
+{% block title %}Relatórios{% endblock %}
+{% block content %}
+  <section class="panel">
+    <div class="panel-header">
+      <h1>Relatórios</h1>
+      <div class="panel-actions">
+        <a class="btn subtle" href="{% url 'inventario_v2:produtos_lista' %}">Voltar aos produtos</a>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <p>Gere relatórios gráficos das movimentações por produto ou por período.</p>
+
+      <div class="report-actions">
+        <form method="get" action="{% url 'inventario_v2:relatorio_produto' produto_pk=0 %}" onsubmit="event.preventDefault(); location.href='{{ request.path }}'">
+          <label for="produto-select">Relatório por produto</label>
+          <select id="produto-select" name="produto">
+            <option value="">-- selecione um produto --</option>
+            {% for p in produtos %}
+              <option value="{{ p.pk }}">{{ p.nome }}</option>
+            {% endfor %}
+          </select>
+          <button class="btn primary" type="button" onclick="gotoProdutoReport()">Abrir</button>
+        </form>
+      </div>
+
+      <hr>
+
+      <h2>Relatórios gerados</h2>
+      {% if relatorios_files %}
+        <ul class="report-list">
+          {% for f in relatorios_files %}
+            <li>
+              <a href="{{ f.url }}" target="_blank" rel="noopener">{{ f.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="muted">Nenhum relatório gerado encontrado (pasta MEDIA_ROOT/relatorios vazia).</p>
+      {% endif %}
+    </div>
+  </section>
+
+  <script>
+    function gotoProdutoReport(){
+      const sel = document.getElementById('produto-select');
+      const pid = sel.value;
+      if(!pid){ alert('Selecione um produto.'); return; }
+      window.location.href = "{% url 'inventario_v2:relatorio_produto' produto_pk=0 %}".replace('/0/', '/' + pid + '/');
+    }
+  </script>
+{% endblock %}
+```

@@ -1,0 +1,36 @@
+{% extends "inventario_v2/base.html" %}
+{% block title %}Usuário{% endblock %}
+{% block content %}
+  <section class="panel">
+    <div class="panel-header">
+      <h1>{% if object %}Editar Usuário{% else %}Registrar Usuário{% endif %}</h1>
+      <div class="panel-actions">
+        {% if object %}
+          <a class="btn subtle" href="{% url 'inventario_v2:usuarios_lista' %}">Voltar aos usuários</a>
+        {% else %}
+          <a class="btn subtle" href="{% url 'inventario_v2:produtos_lista' %}">Voltar</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <form class="form" method="post">
+      {% csrf_token %}
+      <div class="form-grid">
+        {{ form.as_p }}
+        {% if object %}
+          <label for="perfil_papel">Papel</label>
+          <select name="perfil_papel" id="perfil_papel">
+            <option value="ADMIN" {% if object.perfil and object.perfil.papel == "ADMIN" %}selected{% endif %}>Administrador</option>
+            <option value="OPERATOR" {% if object.perfil and object.perfil.papel == "OPERATOR" %}selected{% endif %}>Operador</option>
+            <option value="VIEWER" {% if object.perfil and object.perfil.papel == "VIEWER" %}selected{% endif %}>Leitor</option>
+          </select>
+        {% endif %}
+      </div>
+
+      <div class="form-actions">
+        <button class="btn primary" type="submit">Salvar</button>
+        <a class="btn subtle" href="{% url 'inventario_v2:produtos_lista' %}">Cancelar</a>
+      </div>
+    </form>
+  </section>
+{% endblock %}

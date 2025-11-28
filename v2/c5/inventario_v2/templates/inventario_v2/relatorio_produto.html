@@ -1,0 +1,107 @@
+{% extends "inventario_v2/base.html" %}
+{% block title %}Relatório — {{ produto.nome }}{% endblock %}
+{% block content %}
+  <section class="panel">
+    <div class="panel-header">
+      <h1>Relatório — {{ produto.nome }}</h1>
+      <div class="panel-actions">
+        <a class="btn subtle" href="{% url 'inventario_v2:relatorios_index' %}">Voltar aos relatórios</a>
+        <a class="btn subtle" href="{% url 'inventario_v2:produto_movimentacoes' produto_pk=produto.pk %}">Histórico do produto</a>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <form id="report-form" class="form-inline" onsubmit="event.preventDefault(); loadChart();">
+        <label>Período</label>
+        <input type="date" id="start" name="start" value="{{ default_start }}">
+        <input type="date" id="end" name="end" value="{{ default_end }}">
+        <button class="btn primary" type="submit">Gerar</button>
+      </form>
+
+      <div style="margin-top:1rem;">
+        <canvas id="movChart" height="120"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const produtoId = "{{ produto.pk }}";
+    let chartInstance = null;
+
+    function formatDateLabel(d){
+      // d is YYYY-MM-DD
+      return d;
+    }
+
+    function loadChart(){
+      const start = document.getElementById('start').value;
+      const end = document.getElementById('end').value;
+      const url = "{% url 'inventario_v2:api_produto_movimentacoes' %}?produto=" + produtoId + "&start=" + start + "&end=" + end;
+
+      fetch(url, { credentials: 'same-origin' })
+        .then(r => {
+          if(!r.ok) throw new Error("Falha ao obter dados do servidor");
+          return r.json();
+        })
+        .then(data => {
+          const labels = data.labels.map(formatDateLabel);
+          const entradas = data.datasets.entrada;
+          const saidas = data.datasets.saida;
+
+          const ctx = document.getElementById('movChart').getContext('2d');
+
+          const datasets = [
+            {
+              label: 'Entradas',
+              data: entradas,
+              borderColor: 'rgba(46, 125, 50, 0.9)',
+              backgroundColor: 'rgba(46, 125, 50, 0.2)',
+              fill: true,
+              tension: 0.2,
+            },
+            {
+              label: 'Saídas',
+              data: saidas,
+              borderColor: 'rgba(211, 47, 47, 0.9)',
+              backgroundColor: 'rgba(211, 47, 47, 0.15)',
+              fill: true,
+              tension: 0.2,
+            }
+          ];
+
+          if(chartInstance){
+            chartInstance.data.labels = labels;
+            chartInstance.data.datasets = datasets;
+            chartInstance.update();
+          }else{
+            chartInstance = new Chart(ctx, {
+              type: 'line',
+              data: {
+                labels: labels,
+                datasets: datasets
+              },
+              options: {
+                responsive: true,
+                plugins: {
+                  legend: { position: 'top' },
+                  title: { display: true, text: 'Movimentações por dia (quantidade)' }
+                },
+                scales: {
+                  x: { display: true },
+                  y: { display: true, beginAtZero: true }
+                }
+              }
+            });
+          }
+        })
+        .catch(err => {
+          alert("Erro ao carregar dados: " + err.message);
+        });
+    }
+
+    // carregar gráfico ao abrir a página
+    document.addEventListener('DOMContentLoaded', function(){ loadChart(); });
+  </script>
+{% endblock %}

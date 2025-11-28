@@ -1,0 +1,41 @@
+{% extends "inventario_v2/base.html" %}
+{% block title %}Tabelas de Produtos{% endblock %}
+{% block content %}
+  <section class="panel">
+    <div class="panel-header">
+      <h1>Tabelas de Produtos</h1>
+      <div class="panel-actions">
+        <a class="btn primary" href="{% url 'inventario_v2:tabelas_adicionar' %}">Adicionar tabela</a>
+        <a class="btn subtle" href="{% url 'inventario_v2:produtos_lista' %}">Voltar aos produtos</a>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table class="styled-table">
+        <thead><tr><th>Nome</th><th>Owner</th><th>Descrição</th><th class="actions-col">Ações</th></tr></thead>
+        <tbody>
+          {% for t in tabelas %}
+            <tr>
+              <td>{{ t.nome }}</td>
+              <td>
+                {% if t.owner %}
+                  {{ t.owner.username }}
+                {% else %}
+                  —
+                {% endif %}
+              </td>
+              <td>{{ t.descricao }}</td>
+              <td class="actions-col">
+                <a class="link" href="{% url 'inventario_v2:tabelas_editar' t.pk %}">Editar</a>
+                <span class="sep">|</span>
+                <a class="link danger" href="{% url 'inventario_v2:tabelas_remover' t.pk %}">Excluir</a>
+              </td>
+            </tr>
+          {% empty %}
+            <tr><td colspan="4" class="empty">Nenhuma tabela cadastrada.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+{% endblock %}

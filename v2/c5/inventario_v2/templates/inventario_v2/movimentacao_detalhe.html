@@ -1,0 +1,32 @@
+{% extends "inventario_v2/base.html" %}
+{% block title %}Detalhes da Movimentação{% endblock %}
+{% block content %}
+  <section class="panel small">
+    <div class="panel-header">
+      <h1>Detalhes da Movimentação</h1>
+      <div class="panel-actions">
+        <a class="btn subtle" href="{% url 'inventario_v2:movimentacoes_lista' %}">Voltar à lista</a>
+        <a class="btn subtle" href="{% url 'inventario_v2:produto_movimentacoes' produto_pk=movimentacao.produto.pk %}">Histórico do produto</a>
+        <a class="btn danger" href="{% url 'inventario_v2:movimentacoes_remover' movimentacao.pk %}">Excluir</a>
+      </div>
+    </div>
+
+    <div class="panel-body">
+      <p><strong>Produto:</strong>
+        <a href="{% url 'inventario_v2:produto_movimentacoes' produto_pk=movimentacao.produto.pk %}">
+          {{ movimentacao.produto.nome }}
+        </a>
+      </p>
+
+      <p><strong>Tipo:</strong> {{ movimentacao.get_tipo_display }}</p>
+      <p><strong>Quantidade:</strong> {{ movimentacao.quantidade }}</p>
+      <p><strong>Descrição:</strong> {{ movimentacao.descricao|default:"—" }}</p>
+
+      <p><strong>Quantidade antes:</strong> {{ movimentacao.quantidade_antes }}</p>
+      <p><strong>Quantidade depois:</strong> {{ movimentacao.quantidade_depois }}</p>
+
+      <p><strong>Usuário:</strong> {{ movimentacao.usuario.username|default:"—" }}</p>
+      <p><strong>Registrada em:</strong> {{ movimentacao.criado_em }}</p>
+    </div>
+  </section>
+{% endblock %}
