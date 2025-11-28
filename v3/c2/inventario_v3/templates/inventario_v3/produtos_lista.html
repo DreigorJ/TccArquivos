@@ -1,0 +1,24 @@
+{% extends "inventario_v3/base.html" %}
+{% block content %}
+  <h2>Produtos</h2>
+  <a href="{% url 'inventario_v3:produtos_criacao' %}">Adicionar produto</a>
+  <table>
+    <thead><tr><th>Nome</th><th>Quantidade</th><th>Preço</th><th>Ações</th></tr></thead>
+    <tbody>
+      {% for p in produtos %}
+      <tr>
+        <td><a href="{% url 'inventario_v3:produtos_descricao' p.pk %}">{{ p.nome }}</a></td>
+        <td>{{ p.quantidade }}</td>
+        <td>R$ {{ p.preco }}</td>
+        <td>
+          <a href="{% url 'inventario_v3:produtos_edicao' p.pk %}">Editar</a> |
+          <a href="{% url 'inventario_v3:produtos_remocao' p.pk %}">Excluir</a> |
+          <a href="{% url 'inventario_v3:novo_movimento' p.pk %}">Mover</a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="4">Nenhum produto cadastrado.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
