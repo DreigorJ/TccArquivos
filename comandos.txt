@@ -1,0 +1,27 @@
+radon cc -s -a -j inventario_v1/ > resultados/radon_cc.json
+radon mi -j inventario_v1/ > resultados/radon_mi.json
+
+pytest --junitxml="resultados\pytest_results.xml" --cov=inventario_v1 --cov-branch --cov-report=xml:"resultados\coverage.xml" --cov-report=term-missing -q > resultados\pytest_output.txt 2>&1
+
+pylint inventario_v1 --load-plugins pylint_django --ignore=migrations,.venv,resultados,management --output-format=json > resultados/pylint.json
+
+cloc inventario_v1 --exclude-dir=migrations --json --out="resultados/cloc_inventario_v1.json"
+
+
+
+
+python scripts/compila_resultados.py --dir resultados/
+
+
+
+
+
+
+
+python manage.py makemigrations
+
+python manage.py migrate
+
+python manage.py runserver
+
+python manage.py populacao_testes

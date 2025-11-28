@@ -1,0 +1,396 @@
+{
+  "generated_at": "2025-11-27T13:28:40.186349+00:00",
+  "source_dir": "C:\\Users\\rgoes\\PycharmProjects\\DjangoProject\\resultados",
+  "entries": {
+    ".": {
+      "path": "C:\\Users\\rgoes\\PycharmProjects\\DjangoProject\\resultados",
+      "summary": {
+        "cloc": {
+          "n_files": 19,
+          "n_lines": 1189,
+          "code": 979,
+          "blank": 143,
+          "comment": 67,
+          "by_language": {
+            "Python": {
+              "files": 8,
+              "code": 517
+            },
+            "HTML": {
+              "files": 10,
+              "code": 343
+            },
+            "CSS": {
+              "files": 1,
+              "code": 119
+            }
+          }
+        },
+        "pylint": {
+          "total_issues": 45,
+          "by_type": {
+            "error": 1,
+            "convention": 38,
+            "refactor": 3,
+            "warning": 3
+          },
+          "top_files": [
+            [
+              "inventario_v2\\views.py",
+              18
+            ],
+            [
+              "inventario_v2\\models.py",
+              9
+            ],
+            [
+              "inventario_v2\\urls.py",
+              6
+            ],
+            [
+              "inventario_v2\\admin.py",
+              5
+            ],
+            [
+              "inventario_v2\\forms.py",
+              4
+            ],
+            [
+              "inventario_v2\\apps.py",
+              2
+            ],
+            [
+              "inventario_v2\\__init__.py",
+              1
+            ]
+          ],
+          "top_messages": [
+            [
+              "C0115",
+              15
+            ],
+            [
+              "C0301",
+              10
+            ],
+            [
+              "C0114",
+              6
+            ],
+            [
+              "C0304",
+              5
+            ],
+            [
+              "R0901",
+              3
+            ],
+            [
+              "C0411",
+              2
+            ],
+            [
+              "E5110",
+              1
+            ],
+            [
+              "W0718",
+              1
+            ],
+            [
+              "W0246",
+              1
+            ],
+            [
+              "W0611",
+              1
+            ]
+          ],
+          "sample_errors": [
+            {
+              "path": "inventario_v2\\__init__.py",
+              "line": 1,
+              "msg": "Django was not configured. For more information run pylint --load-plugins=pylint_django --help-msg=django-not-configured"
+            }
+          ]
+        },
+        "radon_cc": {
+          "total_measured": 52,
+          "top_complex": [
+            {
+              "file": "inventario_v2\\management\\commands\\populacao_teste.py",
+              "name": "handle",
+              "complexity": 20,
+              "rank": "C"
+            },
+            {
+              "file": "inventario_v2\\management\\commands\\populacao_teste.py",
+              "name": "Command",
+              "complexity": 12,
+              "rank": "C"
+            },
+            {
+              "file": "inventario_v2\\forms.py",
+              "name": "MovimentacaoFormulario",
+              "complexity": 6,
+              "rank": "B"
+            },
+            {
+              "file": "inventario_v2\\forms.py",
+              "name": "clean",
+              "complexity": 5,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\models.py",
+              "name": "clean",
+              "complexity": 5,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\models.py",
+              "name": "save",
+              "complexity": 5,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\testes\\testes_v2.py",
+              "name": "test_create_movimentacao_persists_and_updates_stock",
+              "complexity": 5,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\models.py",
+              "name": "Produtos",
+              "complexity": 4,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\models.py",
+              "name": "change_quantidade",
+              "complexity": 4,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\models.py",
+              "name": "Movimentacao",
+              "complexity": 4,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\views.py",
+              "name": "MovimentacaoAdicionar",
+              "complexity": 4,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\management\\commands\\populacao_teste.py",
+              "name": "mute_signals",
+              "complexity": 4,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\testes\\testes_v2.py",
+              "name": "test_produto_create_view_invalid",
+              "complexity": 4,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\testes\\testes_v2.py",
+              "name": "test_produto_detail_view_shows_product",
+              "complexity": 4,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\testes\\testes_v2.py",
+              "name": "test_produto_change_quantidade_method",
+              "complexity": 4,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\views.py",
+              "name": "ProdutosLista",
+              "complexity": 3,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\views.py",
+              "name": "get_initial",
+              "complexity": 3,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\views.py",
+              "name": "get_form",
+              "complexity": 3,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\views.py",
+              "name": "get_success_url",
+              "complexity": 3,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\views.py",
+              "name": "MovimentacaoRemover",
+              "complexity": 3,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\testes\\testes_v2.py",
+              "name": "test_movimentacao_create_view_requires_login",
+              "complexity": 3,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\testes\\testes_v2.py",
+              "name": "test_model_str_returns_string",
+              "complexity": 3,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\testes\\testes_v2.py",
+              "name": "test_movimentacao_quantidade_negativa_rejeitada",
+              "complexity": 3,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\models.py",
+              "name": "delete",
+              "complexity": 2,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\views.py",
+              "name": "get_queryset",
+              "complexity": 2,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\views.py",
+              "name": "ProdutosAdicionar",
+              "complexity": 2,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\views.py",
+              "name": "ProdutosEditar",
+              "complexity": 2,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\views.py",
+              "name": "ProdutosRemover",
+              "complexity": 2,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\views.py",
+              "name": "form_valid",
+              "complexity": 2,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\views.py",
+              "name": "post",
+              "complexity": 2,
+              "rank": "A"
+            }
+          ]
+        },
+        "radon_mi": {
+          "average_mi": 84.16,
+          "files": [
+            {
+              "file": "inventario_v2\\admin.py",
+              "mi": 100.0,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\apps.py",
+              "mi": 100.0,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\forms.py",
+              "mi": 59.72433304121394,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\models.py",
+              "mi": 62.00722760888827,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\urls.py",
+              "mi": 100.0,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\views.py",
+              "mi": 62.31857361814971,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\__init__.py",
+              "mi": 100.0,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\management\\__init__.py",
+              "mi": 100.0,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\management\\commands\\populacao_teste.py",
+              "mi": 54.10535752520443,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\management\\commands\\__init__.py",
+              "mi": 100.0,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\migrations\\0001_initial.py",
+              "mi": 100.0,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\migrations\\__init__.py",
+              "mi": 100.0,
+              "rank": "A"
+            },
+            {
+              "file": "inventario_v2\\testes\\testes_v2.py",
+              "mi": 55.91311285863183,
+              "rank": "A"
+            }
+          ]
+        },
+        "pytest": {
+          "total": 9,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "junit_xml": "resultados\\pytest_results.xml"
+        },
+        "coverage": {
+          "line_rate_percent": 59.27,
+          "attribs": {
+            "version": "7.12.0",
+            "timestamp": "1764250094648",
+            "lines-valid": "464",
+            "lines-covered": "275",
+            "line-rate": "0.5927",
+            "branches-valid": "52",
+            "branches-covered": "11",
+            "branch-rate": "0.2115",
+            "complexity": "0"
+          }
+        }
+      }
+    }
+  }
+}
