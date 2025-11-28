@@ -1,0 +1,33 @@
+{% extends "inventario_v3/base.html" %}
+{% block title %}Relatórios{% endblock %}
+
+{% block content %}
+  <div class="card narrow">
+    <h2>Relatórios</h2>
+
+    <form method="post" style="margin-bottom:16px;">
+      {% csrf_token %}
+      <button type="submit" class="btn">Gerar relatório agora</button>
+      <span class="muted" style="margin-left:10px;">(será gerado para as tabelas às quais você tem acesso)</span>
+    </form>
+
+    {% if messages %}
+      {% for m in messages %}
+        <div class="alert {% if m.tags %}alert-{{ m.tags }}{% else %}alert-info{% endif %}">{{ m }}</div>
+      {% endfor %}
+    {% endif %}
+
+    {% if reports %}
+      <ul class="reports-list">
+        {% for r in reports %}
+          <li>
+            <a href="{{ r.url }}" target="_blank">{{ r.name }}</a>
+            &nbsp;<span class="muted">Gerado em: {{ r.generated_at|date:"Y-m-d H:i:s" }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Nenhum relatório encontrado.</p>
+    {% endif %}
+  </div>
+{% endblock %}

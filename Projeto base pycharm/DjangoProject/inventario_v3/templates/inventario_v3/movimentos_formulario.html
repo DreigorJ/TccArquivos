@@ -1,0 +1,23 @@
+{% extends "inventario_v3/base.html" %}
+{% block title %}Registrar Movimentação{% endblock %}
+
+{% block content %}
+  <div class="card narrow">
+    <h2>Registrar movimentação para {{ produto.nome }}</h2>
+
+    <form method="post" class="form">{% csrf_token %}
+      {{ form.non_field_errors }}
+      {% for field in form %}
+        <div class="form-row">
+          {{ field.label_tag }}
+          {{ field }}
+          {% for err in field.errors %}<div class="field-error">{{ err }}</div>{% endfor %}
+        </div>
+      {% endfor %}
+      <div class="form-actions">
+        <button type="submit" class="btn">Registrar</button>
+        <a class="btn btn-outline" href="{% url 'inventario_v3:produtos_descricao' produto.pk %}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

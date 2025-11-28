@@ -1,0 +1,508 @@
+{
+  "generated_at": "2025-11-25T03:00:18.971119Z",
+  "source_dir": "C:\\Users\\rgoes\\PycharmProjects\\DjangoProject\\resultados",
+  "cloc": {
+    "n_files": 33,
+    "n_lines": 2841,
+    "code": 2115,
+    "blank": 431,
+    "comment": 295,
+    "by_language": {
+      "Python": {
+        "files": 13,
+        "code": 1436
+      },
+      "HTML": {
+        "files": 19,
+        "code": 568
+      },
+      "CSS": {
+        "files": 1,
+        "code": 111
+      }
+    }
+  },
+  "pylint": {
+    "total_issues": 195,
+    "by_type": {
+      "convention": 110,
+      "warning": 24,
+      "refactor": 33,
+      "error": 28
+    },
+    "top_files": [
+      [
+        "inventario_v3\\views.py",
+        79
+      ],
+      [
+        "inventario_v3\\signals.py",
+        33
+      ],
+      [
+        "inventario_v3\\models.py",
+        31
+      ],
+      [
+        "inventario_v3\\forms.py",
+        30
+      ],
+      [
+        "inventario_v3\\urls.py",
+        9
+      ],
+      [
+        "inventario_v3\\admin.py",
+        8
+      ],
+      [
+        "inventario_v3\\apps.py",
+        5
+      ]
+    ],
+    "top_messages": [
+      [
+        "C0115",
+        49
+      ],
+      [
+        "E1101",
+        25
+      ],
+      [
+        "C0301",
+        24
+      ],
+      [
+        "R0901",
+        21
+      ],
+      [
+        "W0613",
+        16
+      ],
+      [
+        "C0103",
+        12
+      ],
+      [
+        "R0903",
+        10
+      ],
+      [
+        "C0304",
+        7
+      ],
+      [
+        "C0114",
+        7
+      ],
+      [
+        "C0411",
+        6
+      ]
+    ],
+    "sample_errors": [
+      {
+        "path": "inventario_v3\\models.py",
+        "line": 22,
+        "msg": "__str__ does not return str"
+      },
+      {
+        "path": "inventario_v3\\models.py",
+        "line": 35,
+        "msg": "__str__ does not return str"
+      },
+      {
+        "path": "inventario_v3\\models.py",
+        "line": 48,
+        "msg": "__str__ does not return str"
+      },
+      {
+        "path": "inventario_v3\\models.py",
+        "line": 78,
+        "msg": "Instance of 'OneToOneField' has no 'get_username' member"
+      },
+      {
+        "path": "inventario_v3\\models.py",
+        "line": 101,
+        "msg": "Instance of 'ForeignKey' has no 'get_username' member"
+      },
+      {
+        "path": "inventario_v3\\models.py",
+        "line": 101,
+        "msg": "Instance of 'ForeignKey' has no 'nome' member; maybe 'name'?"
+      },
+      {
+        "path": "inventario_v3\\models.py",
+        "line": 117,
+        "msg": "Instance of 'ForeignKey' has no 'nome' member; maybe 'name'?"
+      },
+      {
+        "path": "inventario_v3\\models.py",
+        "line": 135,
+        "msg": "Instance of 'Movimento' has no 'produto_id' member"
+      },
+      {
+        "path": "inventario_v3\\models.py",
+        "line": 139,
+        "msg": "Class 'Produto' has no 'objects' member"
+      },
+      {
+        "path": "inventario_v3\\models.py",
+        "line": 139,
+        "msg": "Instance of 'Movimento' has no 'produto_id' member"
+      },
+      {
+        "path": "inventario_v3\\models.py",
+        "line": 154,
+        "msg": "Class 'Produto' has no 'objects' member"
+      },
+      {
+        "path": "inventario_v3\\models.py",
+        "line": 154,
+        "msg": "Instance of 'Movimento' has no 'produto_id' member"
+      },
+      {
+        "path": "inventario_v3\\models.py",
+        "line": 178,
+        "msg": "Class 'PerfilUsuario' has no 'objects' member"
+      },
+      {
+        "path": "inventario_v3\\signals.py",
+        "line": 23,
+        "msg": "Class 'TabelaProdutos' has no 'objects' member"
+      },
+      {
+        "path": "inventario_v3\\signals.py",
+        "line": 25,
+        "msg": "Class 'TabelaProdutos' has no 'objects' member"
+      },
+      {
+        "path": "inventario_v3\\signals.py",
+        "line": 26,
+        "msg": "Class 'AcessoTabela' has no 'objects' member"
+      },
+      {
+        "path": "inventario_v3\\signals.py",
+        "line": 46,
+        "msg": "Instance of 'ManyToManyField' has no 'through' member"
+      },
+      {
+        "path": "inventario_v3\\signals.py",
+        "line": 58,
+        "msg": "Class 'Produto' has no 'objects' member"
+      },
+      {
+        "path": "inventario_v3\\views.py",
+        "line": 48,
+        "msg": "Class 'AcessoTabela' has no 'objects' member"
+      },
+      {
+        "path": "inventario_v3\\views.py",
+        "line": 292,
+        "msg": "Class 'TabelaProdutos' has no 'objects' member"
+      }
+    ]
+  },
+  "radon_cc": {
+    "total_measured": 121,
+    "top_complex": [
+      {
+        "file": "inventario_v3\\management\\commands\\populacao_testes.py",
+        "name": "handle",
+        "complexity": 39,
+        "rank": "E"
+      },
+      {
+        "file": "inventario_v3\\management\\commands\\gerar_relatorio.py",
+        "name": "handle",
+        "complexity": 28,
+        "rank": "D"
+      },
+      {
+        "file": "inventario_v3\\management\\commands\\populacao_testes.py",
+        "name": "Command",
+        "complexity": 21,
+        "rank": "D"
+      },
+      {
+        "file": "inventario_v3\\management\\commands\\gerar_relatorio.py",
+        "name": "Command",
+        "complexity": 16,
+        "rank": "C"
+      },
+      {
+        "file": "inventario_v3\\views.py",
+        "name": "ProdutosAdicionar",
+        "complexity": 14,
+        "rank": "C"
+      },
+      {
+        "file": "inventario_v3\\views.py",
+        "name": "form_valid",
+        "complexity": 13,
+        "rank": "C"
+      },
+      {
+        "file": "inventario_v3\\views.py",
+        "name": "get_context_data",
+        "complexity": 12,
+        "rank": "C"
+      },
+      {
+        "file": "inventario_v3\\views.py",
+        "name": "Relatorios",
+        "complexity": 10,
+        "rank": "B"
+      },
+      {
+        "file": "inventario_v3\\testes\\test_v2.py",
+        "name": "test_categoria_crud_via_views",
+        "complexity": 10,
+        "rank": "B"
+      },
+      {
+        "file": "inventario_v3\\models.py",
+        "name": "clean",
+        "complexity": 9,
+        "rank": "B"
+      },
+      {
+        "file": "inventario_v3\\views.py",
+        "name": "user_has_table_level",
+        "complexity": 9,
+        "rank": "B"
+      },
+      {
+        "file": "inventario_v3\\testes\\test_v2.py",
+        "name": "test_populate_command_and_models",
+        "complexity": 8,
+        "rank": "B"
+      },
+      {
+        "file": "inventario_v3\\testes\\test_v2.py",
+        "name": "test_report_view_shows_generated_reports",
+        "complexity": 8,
+        "rank": "B"
+      },
+      {
+        "file": "inventario_v3\\testes\\test_v2.py",
+        "name": "test_gerar_relatorio_command_creates_files",
+        "complexity": 7,
+        "rank": "B"
+      },
+      {
+        "file": "inventario_v3\\signals.py",
+        "name": "gerar_relatorio_no_login",
+        "complexity": 6,
+        "rank": "B"
+      },
+      {
+        "file": "inventario_v3\\views.py",
+        "name": "post",
+        "complexity": 6,
+        "rank": "B"
+      },
+      {
+        "file": "inventario_v3\\testes\\test_v3.py",
+        "name": "test_gerenciar_acessos_create_and_listing",
+        "complexity": 6,
+        "rank": "B"
+      },
+      {
+        "file": "inventario_v3\\forms.py",
+        "name": "UserUpdateForm",
+        "complexity": 5,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\forms.py",
+        "name": "clean",
+        "complexity": 5,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\models.py",
+        "name": "Movimento",
+        "complexity": 5,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\signals.py",
+        "name": "produto_tabelas_changed",
+        "complexity": 5,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\views.py",
+        "name": "ProdutosEditar",
+        "complexity": 5,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\views.py",
+        "name": "ProdutosRemover",
+        "complexity": 5,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\views.py",
+        "name": "dispatch",
+        "complexity": 5,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\testes\\test_v2.py",
+        "name": "test_produto_change_quantidade_method_persists",
+        "complexity": 5,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\testes\\test_v3.py",
+        "name": "test_deleting_tabela_deletes_orphan_produto_and_movimentos",
+        "complexity": 5,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\testes\\test_v3.py",
+        "name": "test_permission_flow_product_creation_and_visibility",
+        "complexity": 5,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\testes\\test_v3.py",
+        "name": "test_tabelas_lista_shows_only_public_and_access",
+        "complexity": 5,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\testes\\test_views.py",
+        "name": "test_create_movimento_persists_and_updates_stock",
+        "complexity": 5,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\signals.py",
+        "name": "tabela_pre_delete",
+        "complexity": 4,
+        "rank": "A"
+      }
+    ]
+  },
+  "radon_mi": {
+    "average_mi": 75.21,
+    "files": [
+      {
+        "file": "inventario_v3\\admin.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\apps.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\forms.py",
+        "mi": 63.15153644033905,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\models.py",
+        "mi": 57.39470438973536,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\signals.py",
+        "mi": 74.42863717598289,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\urls.py",
+        "mi": 88.84241350222237,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\views.py",
+        "mi": 36.65158410516477,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\__init__.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\management\\__init__.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\management\\commands\\gerar_relatorio.py",
+        "mi": 47.9737175032383,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\management\\commands\\populacao_testes.py",
+        "mi": 47.85504807013787,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\management\\commands\\__init__.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\migrations\\0001_initial.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\migrations\\__init__.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\testes\\test_models.py",
+        "mi": 66.03328462751459,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\testes\\test_v2.py",
+        "mi": 59.33327369232757,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\testes\\test_v3.py",
+        "mi": 48.260447411835194,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v3\\testes\\test_views.py",
+        "mi": 63.86235404131531,
+        "rank": "A"
+      }
+    ]
+  },
+  "pytest": {
+    "total": 30,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "coverage": {
+    "line_rate_percent": 92.24,
+    "attribs": {
+      "version": "7.12.0",
+      "timestamp": "1763974063067",
+      "lines-valid": "219",
+      "lines-covered": "202",
+      "line-rate": "0.9224",
+      "branches-covered": "0",
+      "branches-valid": "0",
+      "branch-rate": "0",
+      "complexity": "0"
+    }
+  }
+}

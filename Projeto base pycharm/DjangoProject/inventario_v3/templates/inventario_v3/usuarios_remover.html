@@ -1,0 +1,17 @@
+{% extends "inventario_v3/base.html" %}
+{% block title %}Remover Usuário{% endblock %}
+
+{% block content %}
+  <div class="card narrow">
+    <h2>Remover Usuário</h2>
+    <p>Tem certeza que deseja remover o usuário <strong>{{ object.username }}</strong>?</p>
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-actions">
+        <button type="submit" class="btn btn-danger">Confirmar remoção</button>
+        <a class="btn btn-outline" href="{% url 'inventario_v3:usuarios_lista' %}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

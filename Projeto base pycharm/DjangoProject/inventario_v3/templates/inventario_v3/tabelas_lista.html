@@ -1,0 +1,40 @@
+{% extends "inventario_v3/base.html" %}
+{% block title %}Tabelas de Produtos{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <div class="card-header">
+      <h2>Tabelas de Produtos</h2>
+      <div class="actions">
+        <a class="btn" href="{% url 'inventario_v3:tabelas_adicionar' %}">Adicionar</a>
+      </div>
+    </div>
+
+    {% if tabelas %}
+      <table class="table">
+        <thead><tr><th>Nome</th><th>Descrição</th><th>Público</th><th>Ações</th></tr></thead>
+        <tbody>
+          {% for t in tabelas %}
+            <tr>
+              <td>{{ t.nome }}</td>
+              <td>{{ t.descricao|default:"—" }}</td>
+              <td>{{ t.publico|yesno:"Sim,Não" }}</td>
+              <td class="table-actions">
+                <form action="{% url 'inventario_v3:seleciona_tabela_atual' t.pk %}" method="post" style="display:inline">
+                  {% csrf_token %}
+                  <button class="btn btn-outline" type="submit">Selecionar</button>
+                </form>
+                {% if user.is_staff %}
+                  <a class="link" href="{% url 'inventario_v3:tabelas_editar' t.pk %}">Editar</a>
+                  <a class="link danger" href="{% url 'inventario_v3:tabelas_remover' t.pk %}">Remover</a>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="muted">Nenhuma tabela cadastrada.</p>
+    {% endif %}
+  </div>
+{% endblock %}

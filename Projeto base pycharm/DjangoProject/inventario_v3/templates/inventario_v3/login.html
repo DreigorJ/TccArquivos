@@ -1,0 +1,35 @@
+{% extends "inventario_v3/base.html" %}
+{% block title %}Entrar{% endblock %}
+
+{% block content %}
+  <!-- Mesmo padrão do registro: círculo branco centralizado com o card interno -->
+  <div class="circle-wrap">
+    <div class="card card-inner">
+      <h2>Entrar</h2>
+
+      <form method="post" class="form" novalidate>
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+          <div class="alert alert-error">{{ form.non_field_errors }}</div>
+        {% endif %}
+
+        <div class="form-row">
+          {{ form.username.label_tag }}
+          {{ form.username }}
+          {% for err in form.username.errors %}<div class="field-error">{{ err }}</div>{% endfor %}
+        </div>
+
+        <div class="form-row">
+          {{ form.password.label_tag }}
+          {{ form.password }}
+          {% for err in form.password.errors %}<div class="field-error">{{ err }}</div>{% endfor %}
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn">Entrar</button>
+          <a class="btn btn-outline" href="{% url 'inventario_v3:register' %}">Registrar</a>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

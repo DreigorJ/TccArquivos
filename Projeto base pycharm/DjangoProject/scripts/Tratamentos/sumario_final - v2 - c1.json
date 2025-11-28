@@ -1,0 +1,368 @@
+{
+  "generated_at": "2025-11-26T14:24:59.124793Z",
+  "source_dir": "C:\\Users\\rgoes\\PycharmProjects\\DjangoProject\\resultados",
+  "cloc": {
+    "n_files": 14,
+    "n_lines": 623,
+    "code": 525,
+    "blank": 71,
+    "comment": 27,
+    "by_language": {
+      "Python": {
+        "files": 8,
+        "code": 274
+      },
+      "HTML": {
+        "files": 5,
+        "code": 132
+      },
+      "CSS": {
+        "files": 1,
+        "code": 119
+      }
+    }
+  },
+  "pylint": {
+    "total_issues": 29,
+    "by_type": {
+      "convention": 23,
+      "warning": 1,
+      "refactor": 5
+    },
+    "top_files": [
+      [
+        "inventario_v1\\views.py",
+        14
+      ],
+      [
+        "inventario_v1\\forms.py",
+        5
+      ],
+      [
+        "inventario_v1\\models.py",
+        3
+      ],
+      [
+        "inventario_v1\\urls.py",
+        3
+      ],
+      [
+        "inventario_v1\\admin.py",
+        2
+      ],
+      [
+        "inventario_v1\\apps.py",
+        2
+      ]
+    ],
+    "top_messages": [
+      [
+        "C0115",
+        8
+      ],
+      [
+        "C0114",
+        6
+      ],
+      [
+        "C0304",
+        4
+      ],
+      [
+        "C0103",
+        4
+      ],
+      [
+        "R0901",
+        4
+      ],
+      [
+        "W0611",
+        1
+      ],
+      [
+        "R0903",
+        1
+      ],
+      [
+        "C0411",
+        1
+      ]
+    ],
+    "sample_errors": []
+  },
+  "radon_cc": {
+    "total_measured": 29,
+    "top_complex": [
+      {
+        "file": "inventario_v1\\management\\commands\\populacao_teste.py",
+        "name": "handle",
+        "complexity": 11,
+        "rank": "C"
+      },
+      {
+        "file": "inventario_v1\\management\\commands\\populacao_teste.py",
+        "name": "Command",
+        "complexity": 7,
+        "rank": "B"
+      },
+      {
+        "file": "inventario_v1\\management\\commands\\populacao_teste.py",
+        "name": "mute_signals",
+        "complexity": 4,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v1.py",
+        "name": "test_produtos_model_create_and_str",
+        "complexity": 4,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v1.py",
+        "name": "test_produtos_form_valid_and_invalid",
+        "complexity": 4,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v1.py",
+        "name": "test_urls_reverse_and_resolve",
+        "complexity": 4,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v1.py",
+        "name": "test_produtos_list_shows_products",
+        "complexity": 4,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v1.py",
+        "name": "test_produtos_create_view",
+        "complexity": 4,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v1.py",
+        "name": "test_produtos_delete_view",
+        "complexity": 4,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\views.py",
+        "name": "ProdutosLista",
+        "complexity": 3,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v1.py",
+        "name": "test_produtos_list_requires_login",
+        "complexity": 3,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v1.py",
+        "name": "test_produtos_update_view",
+        "complexity": 3,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\models.py",
+        "name": "Produtos",
+        "complexity": 2,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\views.py",
+        "name": "get_queryset",
+        "complexity": 2,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\views.py",
+        "name": "ProdutosAdicionar",
+        "complexity": 2,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\views.py",
+        "name": "ProdutosEditar",
+        "complexity": 2,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\views.py",
+        "name": "ProdutosRemover",
+        "complexity": 2,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\apps.py",
+        "name": "InventarioV1Config",
+        "complexity": 1,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\forms.py",
+        "name": "ProdutosFormulario",
+        "complexity": 1,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\models.py",
+        "name": "__str__",
+        "complexity": 1,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\views.py",
+        "name": "form_valid",
+        "complexity": 1,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\views.py",
+        "name": "form_valid",
+        "complexity": 1,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\views.py",
+        "name": "delete",
+        "complexity": 1,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\management\\commands\\populacao_teste.py",
+        "name": "add_arguments",
+        "complexity": 1,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\migrations\\0001_initial.py",
+        "name": "Migration",
+        "complexity": 1,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\migrations\\0002_produtos_delete_product.py",
+        "name": "Migration",
+        "complexity": 1,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v1.py",
+        "name": "user",
+        "complexity": 1,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v1.py",
+        "name": "client_logged_in",
+        "complexity": 1,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v1.py",
+        "name": "sample_produtos",
+        "complexity": 1,
+        "rank": "A"
+      }
+    ]
+  },
+  "radon_mi": {
+    "average_mi": 94.02,
+    "files": [
+      {
+        "file": "inventario_v1\\admin.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\apps.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\forms.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\models.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\urls.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\views.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\__init__.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\management\\__init__.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\management\\commands\\populacao_teste.py",
+        "mi": 64.5682990494501,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\management\\commands\\__init__.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\migrations\\0001_initial.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\migrations\\0002_produtos_delete_product.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\migrations\\__init__.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v1.py",
+        "mi": 51.65227320385136,
+        "rank": "A"
+      }
+    ]
+  },
+  "pytest": {
+    "total": 8,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "coverage": {
+    "line_rate_percent": 92.24,
+    "attribs": {
+      "version": "7.12.0",
+      "timestamp": "1763974063067",
+      "lines-valid": "219",
+      "lines-covered": "202",
+      "line-rate": "0.9224",
+      "branches-covered": "0",
+      "branches-valid": "0",
+      "branch-rate": "0",
+      "complexity": "0"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{% extends "inventario_v3/base.html" %}
+{% block title %}Remover Tabela{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <h2>Remover Tabela</h2>
+    <p>Tem certeza que deseja remover a tabela "<strong>{{ object.nome }}</strong>"?</p>
+
+    <form method="post">{% csrf_token %}
+      <div class="form-actions">
+        <button type="submit" class="btn btn-danger">Confirmar remoção</button>
+        <a class="btn btn-outline" href="{% url 'inventario_v3:tabelas_lista' %}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

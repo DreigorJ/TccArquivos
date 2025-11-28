@@ -1,0 +1,508 @@
+{
+  "generated_at": "2025-11-26T19:36:13.022361Z",
+  "source_dir": "C:\\Users\\rgoes\\PycharmProjects\\DjangoProject\\resultados",
+  "cloc": {
+    "n_files": 25,
+    "n_lines": 1541,
+    "code": 1257,
+    "blank": 188,
+    "comment": 96,
+    "by_language": {
+      "Python": {
+        "files": 10,
+        "code": 750
+      },
+      "HTML": {
+        "files": 14,
+        "code": 388
+      },
+      "CSS": {
+        "files": 1,
+        "code": 119
+      }
+    }
+  },
+  "pylint": {
+    "total_issues": 137,
+    "by_type": {
+      "convention": 75,
+      "warning": 8,
+      "refactor": 19,
+      "error": 35
+    },
+    "top_files": [
+      [
+        "inventario_v1\\views.py",
+        45
+      ],
+      [
+        "inventario_v1\\models.py",
+        44
+      ],
+      [
+        "inventario_v1\\forms.py",
+        17
+      ],
+      [
+        "inventario_v1\\signals.py",
+        13
+      ],
+      [
+        "inventario_v1\\urls.py",
+        7
+      ],
+      [
+        "inventario_v1\\admin.py",
+        6
+      ],
+      [
+        "inventario_v1\\apps.py",
+        5
+      ]
+    ],
+    "top_messages": [
+      [
+        "E1101",
+        34
+      ],
+      [
+        "C0115",
+        32
+      ],
+      [
+        "C0301",
+        17
+      ],
+      [
+        "R0901",
+        14
+      ],
+      [
+        "C0103",
+        9
+      ],
+      [
+        "C0304",
+        7
+      ],
+      [
+        "C0114",
+        7
+      ],
+      [
+        "R0903",
+        5
+      ],
+      [
+        "W0613",
+        2
+      ],
+      [
+        "W0718",
+        2
+      ]
+    ],
+    "sample_errors": [
+      {
+        "path": "inventario_v1\\models.py",
+        "line": 20,
+        "msg": "__str__ does not return str"
+      },
+      {
+        "path": "inventario_v1\\models.py",
+        "line": 56,
+        "msg": "Class 'Produtos' has no 'objects' member"
+      },
+      {
+        "path": "inventario_v1\\models.py",
+        "line": 58,
+        "msg": "Class 'Produtos' has no 'objects' member"
+      },
+      {
+        "path": "inventario_v1\\models.py",
+        "line": 61,
+        "msg": "Class 'Produtos' has no 'objects' member"
+      },
+      {
+        "path": "inventario_v1\\models.py",
+        "line": 81,
+        "msg": "Instance of 'OneToOneField' has no 'username' member"
+      },
+      {
+        "path": "inventario_v1\\models.py",
+        "line": 81,
+        "msg": "Instance of 'PerfilUsuario' has no 'get_papel_display' member"
+      },
+      {
+        "path": "inventario_v1\\models.py",
+        "line": 100,
+        "msg": "Instance of 'Movimentacao' has no 'get_tipo_display' member"
+      },
+      {
+        "path": "inventario_v1\\models.py",
+        "line": 100,
+        "msg": "Instance of 'ForeignKey' has no 'nome' member; maybe 'name'?"
+      },
+      {
+        "path": "inventario_v1\\models.py",
+        "line": 109,
+        "msg": "Class 'Produtos' has no 'objects' member"
+      },
+      {
+        "path": "inventario_v1\\models.py",
+        "line": 109,
+        "msg": "Instance of 'Movimentacao' has no 'produto_id' member"
+      },
+      {
+        "path": "inventario_v1\\models.py",
+        "line": 111,
+        "msg": "Class 'Produtos' has no 'objects' member"
+      },
+      {
+        "path": "inventario_v1\\models.py",
+        "line": 111,
+        "msg": "Instance of 'Movimentacao' has no 'produto_id' member"
+      },
+      {
+        "path": "inventario_v1\\models.py",
+        "line": 114,
+        "msg": "Class 'Produtos' has no 'objects' member"
+      },
+      {
+        "path": "inventario_v1\\models.py",
+        "line": 114,
+        "msg": "Instance of 'Movimentacao' has no 'produto_id' member"
+      },
+      {
+        "path": "inventario_v1\\models.py",
+        "line": 118,
+        "msg": "Class 'Produtos' has no 'objects' member"
+      },
+      {
+        "path": "inventario_v1\\models.py",
+        "line": 118,
+        "msg": "Instance of 'Movimentacao' has no 'produto_id' member"
+      },
+      {
+        "path": "inventario_v1\\models.py",
+        "line": 120,
+        "msg": "Class 'Produtos' has no 'objects' member"
+      },
+      {
+        "path": "inventario_v1\\models.py",
+        "line": 120,
+        "msg": "Instance of 'Movimentacao' has no 'produto_id' member"
+      },
+      {
+        "path": "inventario_v1\\models.py",
+        "line": 130,
+        "msg": "Class 'Produtos' has no 'objects' member"
+      },
+      {
+        "path": "inventario_v1\\models.py",
+        "line": 130,
+        "msg": "Instance of 'Movimentacao' has no 'produto_id' member"
+      }
+    ]
+  },
+  "radon_cc": {
+    "total_measured": 84,
+    "top_complex": [
+      {
+        "file": "inventario_v1\\management\\commands\\populacao_teste.py",
+        "name": "handle",
+        "complexity": 27,
+        "rank": "D"
+      },
+      {
+        "file": "inventario_v1\\management\\commands\\populacao_teste.py",
+        "name": "Command",
+        "complexity": 15,
+        "rank": "C"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v2.py",
+        "name": "test_categorias_crud_views",
+        "complexity": 11,
+        "rank": "C"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v2.py",
+        "name": "test_produtos_filter_by_categoria_in_produtos_lista",
+        "complexity": 8,
+        "rank": "B"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v1.py",
+        "name": "test_produto_detail_view_shows_product",
+        "complexity": 6,
+        "rank": "B"
+      },
+      {
+        "file": "inventario_v1\\signals.py",
+        "name": "ajustar_estoque_apos_exclusao",
+        "complexity": 5,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v1.py",
+        "name": "test_create_movimentacao_persists_and_updates_stock",
+        "complexity": 5,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v2.py",
+        "name": "test_categoria_model_and_str",
+        "complexity": 5,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\forms.py",
+        "name": "MovimentacaoFormulario",
+        "complexity": 4,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\models.py",
+        "name": "Movimentacao",
+        "complexity": 4,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\models.py",
+        "name": "aplicar_no_estoque",
+        "complexity": 4,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\models.py",
+        "name": "reverter_no_estoque",
+        "complexity": 4,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\views.py",
+        "name": "ProdutosLista",
+        "complexity": 4,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\management\\commands\\populacao_teste.py",
+        "name": "mute_signals",
+        "complexity": 4,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v1.py",
+        "name": "test_produto_create_view_invalid",
+        "complexity": 4,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v1.py",
+        "name": "test_produto_change_quantidade_method",
+        "complexity": 4,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v2.py",
+        "name": "test_categoria_form_validation",
+        "complexity": 4,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\forms.py",
+        "name": "clean_quantidade",
+        "complexity": 3,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\models.py",
+        "name": "Produtos",
+        "complexity": 3,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\models.py",
+        "name": "change_quantidade",
+        "complexity": 3,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\views.py",
+        "name": "get_queryset",
+        "complexity": 3,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\views.py",
+        "name": "MovimentacoesLista",
+        "complexity": 3,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\views.py",
+        "name": "MovimentacaoAdicionar",
+        "complexity": 3,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\views.py",
+        "name": "MovimentacaoRemover",
+        "complexity": 3,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v1.py",
+        "name": "test_movimentacao_create_view_requires_login",
+        "complexity": 3,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v1.py",
+        "name": "test_model_str_returns_string",
+        "complexity": 3,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v1.py",
+        "name": "test_movimentacao_quantidade_negativa_rejeitada",
+        "complexity": 3,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v2.py",
+        "name": "test_categorias_list_view_requires_login",
+        "complexity": 3,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\apps.py",
+        "name": "InventarioV1Config",
+        "complexity": 2,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\models.py",
+        "name": "Categoria",
+        "complexity": 2,
+        "rank": "A"
+      }
+    ]
+  },
+  "radon_mi": {
+    "average_mi": 88.25,
+    "files": [
+      {
+        "file": "inventario_v1\\admin.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\apps.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\forms.py",
+        "mi": 81.95407731234891,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\models.py",
+        "mi": 62.863955341273304,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\signals.py",
+        "mi": 81.37727296435263,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\urls.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\views.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\__init__.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\management\\__init__.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\management\\commands\\populacao_teste.py",
+        "mi": 50.3625234595962,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\management\\commands\\__init__.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\migrations\\0001_initial.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\migrations\\0002_produtos_delete_product.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\migrations\\0003_perfilusuario_movimentacao.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\migrations\\0004_categoria_produtos_categoria.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\migrations\\__init__.py",
+        "mi": 100.0,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v1.py",
+        "mi": 55.484246940129225,
+        "rank": "A"
+      },
+      {
+        "file": "inventario_v1\\testes\\testes_v2.py",
+        "mi": 56.47089709507904,
+        "rank": "A"
+      }
+    ]
+  },
+  "pytest": {
+    "total": 15,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "coverage": {
+    "line_rate_percent": 92.24,
+    "attribs": {
+      "version": "7.12.0",
+      "timestamp": "1763974063067",
+      "lines-valid": "219",
+      "lines-covered": "202",
+      "line-rate": "0.9224",
+      "branches-covered": "0",
+      "branches-valid": "0",
+      "branch-rate": "0",
+      "complexity": "0"
+    }
+  }
+}

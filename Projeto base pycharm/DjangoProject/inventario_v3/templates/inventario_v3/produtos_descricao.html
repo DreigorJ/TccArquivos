@@ -1,0 +1,46 @@
+{% extends "inventario_v3/base.html" %}
+{% block title %}{{ produto.nome }}{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <div class="card-header">
+      <h2>{{ produto.nome }}</h2>
+      <div class="actions">
+        <a class="btn" href="{% url 'inventario_v3:produtos_editar' produto.pk %}">Editar</a>
+        <a class="btn btn-outline" href="{% url 'inventario_v3:produtos_lista' %}">Voltar</a>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <p class="muted">{{ produto.descricao }}</p>
+      <p><strong>Quantidade:</strong> {{ produto.quantidade }}</p>
+      <p><strong>Preço:</strong> R$ {{ produto.preco }}</p>
+
+      <p><strong>Tabelas:</strong>
+        {% for t in produto.tabelas.all %}
+          {{ t.nome }}{% if not forloop.last %}, {% endif %}
+        {% empty %}
+          Nenhuma
+        {% endfor %}
+      </p>
+
+      <h3>Movimentações</h3>
+      <ul class="movements">
+        {% for m in produto.movimentos.all %}
+          <li>
+            {{ m.criado_em|date:"Y-m-d H:i" }} -
+            {% if m.tipo_movimento == 'ENTRADA' %}Entrada{% else %}Saída{% endif %}:
+            {{ m.quantidade }}{% if m.motivo %} - {{ m.motivo }}{% endif %}
+            {% if m.usuario %} (por {{ m.usuario.username }}){% endif %}
+          </li>
+        {% empty %}
+          <li>Sem movimentações.</li>
+        {% endfor %}
+      </ul>
+
+      <p>
+        <a class="btn" href="{% url 'inventario_v3:novo_movimento' produto.pk %}">Registrar movimentação</a>
+      </p>
+    </div>
+  </div>
+{% endblock %}

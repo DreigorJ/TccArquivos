@@ -1,0 +1,8 @@
+Django==4.2
+radon==5.1.0
+pylint==2.17.4
+pytest==7.4.0
+pytest-django==4.5.2
+pytest-cov==4.1.0
+cloc==0.2.3
+django-widget-tweaks==1.4.12

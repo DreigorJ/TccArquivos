@@ -1,0 +1,17 @@
+{% extends "inventario_v3/base.html" %}
+{% block title %}Remover Categoria{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <h2>Remover Categoria</h2>
+    <p>Tem certeza que deseja remover a categoria "<strong>{{ object.nome }}</strong>"?</p>
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-actions">
+        <button type="submit" class="btn btn-danger">Confirmar remoção</button>
+        <a class="btn btn-outline" href="{% url 'inventario_v3:categorias_lista' %}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

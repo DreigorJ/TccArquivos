@@ -1,0 +1,31 @@
+{% extends "inventario_v3/base.html" %}
+{% block title %}{% if form.instance.pk %}Editar{% else %}Adicionar{% endif %} Produto{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <h2>{% if form.instance.pk %}Editar{% else %}Adicionar{% endif %} Produto</h2>
+
+    <form method="post" class="form">{% csrf_token %}
+      {{ form.non_field_errors }}
+      {% for field in form %}
+        <div class="form-row">
+          {{ field.label_tag }}
+          {{ field }}
+          {% for err in field.errors %}<div class="field-error">{{ err }}</div>{% endfor %}
+        </div>
+      {% endfor %}
+
+      {% if form.instance.pk %}
+        <div class="form-row">
+          <label>Quantidade atual</label>
+          <div class="static-field">{{ form.instance.quantidade }}</div>
+        </div>
+      {% endif %}
+
+      <div class="form-actions">
+        <button type="submit" class="btn">Salvar</button>
+        <a class="btn btn-outline" href="{% url 'inventario_v3:produtos_lista' %}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}
