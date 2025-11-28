@@ -1,0 +1,33 @@
+{% extends "inventario_v2/base.html" %}
+{% block title %}Nova Movimentação{% endblock %}
+{% block content %}
+  <section class="panel">
+    <div class="panel-header">
+      <h1>{% if form.instance.pk %}Editar Movimentação{% else %}Nova Movimentação{% endif %}</h1>
+      <div class="panel-actions">
+        {# Se o formulário foi aberto a partir do histórico de um produto, volta para ele; senão volta para lista de movimentações #}
+        {% if request.GET.produto %}
+          <a class="btn subtle" href="{% url 'inventario_v2:produto_movimentacoes' produto_pk=request.GET.produto %}">Voltar ao histórico</a>
+        {% else %}
+          <a class="btn subtle" href="{% url 'inventario_v2:movimentacoes_lista' %}">Voltar</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <form class="form" method="post">
+      {% csrf_token %}
+      <div class="form-grid">
+        {{ form.as_p }}
+      </div>
+
+      <div class="form-actions">
+        <button class="btn primary" type="submit">Salvar</button>
+        {% if request.GET.produto %}
+          <a class="btn subtle" href="{% url 'inventario_v2:produto_movimentacoes' produto_pk=request.GET.produto %}">Cancelar</a>
+        {% else %}
+          <a class="btn subtle" href="{% url 'inventario_v2:movimentacoes_lista' %}">Cancelar</a>
+        {% endif %}
+      </div>
+    </form>
+  </section>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "inventario_v2/base.html" %}
+{% block title %}Confirmar exclusão da movimentação{% endblock %}
+{% block content %}
+  <section class="panel small">
+    <h2>Confirmar exclusão</h2>
+    <p>Tem certeza que deseja excluir a movimentação "<strong>{{ object }}</strong>"?</p>
+    <p class="muted">A exclusão reverterá o efeito da movimentação no estoque do produto.</p>
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-actions">
+        <button class="btn danger" type="submit">Sim, excluir</button>
+        {% if object.produto_id %}
+          <a class="btn subtle" href="{% url 'inventario_v2:produto_movimentacoes' produto_pk=object.produto_id %}">Cancelar</a>
+        {% else %}
+          <a class="btn subtle" href="{% url 'inventario_v2:movimentacoes_lista' %}">Cancelar</a>
+        {% endif %}
+      </div>
+    </form>
+  </section>
+{% endblock %}
