@@ -1,0 +1,14 @@
+{% extends "inventario_v2/base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+  <section class="panel auth-panel">
+    <h1>Entrar</h1>
+    <form method="post" class="form narrow">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="form-actions">
+        <button class="btn primary" type="submit">Entrar</button>
+      </div>
+    </form>
+  </section>
+{% endblock %}

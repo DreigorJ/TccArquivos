@@ -1,0 +1,17 @@
+{% extends "inventario_v2/base.html" %}
+{% block title %}Confirmar exclusão da categoria{% endblock %}
+{% block content %}
+  <section class="panel small">
+    <h2>Confirmar exclusão</h2>
+    <p>Tem certeza que deseja excluir a categoria "<strong>{{ object }}</strong>"?</p>
+    <p class="muted">Produtos associados terão a categoria removida (ficarão sem categoria).</p>
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-actions">
+        <button class="btn danger" type="submit">Sim, excluir</button>
+        <a class="btn subtle" href="{% url 'inventario_v2:categorias_lista' %}">Cancelar</a>
+      </div>
+    </form>
+  </section>
+{% endblock %}

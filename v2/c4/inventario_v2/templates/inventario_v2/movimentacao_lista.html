@@ -1,0 +1,61 @@
+{% extends "inventario_v2/base.html" %}
+{% block title %}Movimentações{% endblock %}
+{% block content %}
+  <section class="panel">
+    <div class="panel-header">
+      <h1>Movimentações</h1>
+      <div class="panel-actions">
+        <a class="btn primary" href="{% url 'inventario_v2:movimentacoes_adicionar' %}">Registrar movimentação</a>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Produto</th>
+            <th>Tipo</th>
+            <th class="center">Quantidade</th>
+            <th>Usuário</th>
+            <th class="actions-col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for m in movimentacoes %}
+            <tr>
+              <td>{{ m.criado_em }}</td>
+              <td>
+                <a href="{% url 'inventario_v2:produto_movimentacoes' produto_pk=m.produto.pk %}">
+                  {{ m.produto.nome }}
+                </a>
+              </td>
+              <td>{{ m.get_tipo_display }}</td>
+              <td class="center">{{ m.quantidade }}</td>
+              <td>{{ m.usuario.username }}</td>
+              <td class="actions-col">
+                <a class="link" href="{% url 'inventario_v2:movimentacoes_detalhe' m.pk %}">Ver</a>
+                <span class="sep">|</span>
+                <a class="link danger" href="{% url 'inventario_v2:movimentacoes_remover' m.pk %}">Excluir</a>
+              </td>
+            </tr>
+          {% empty %}
+            <tr><td colspan="6" class="empty">Nenhuma movimentação registrada.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {% if is_paginated %}
+      <nav class="pagination">
+        {% if page_obj.has_previous %}
+          <a class="btn subtle" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+        {% endif %}
+        <span class="page-info">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+        {% if page_obj.has_next %}
+          <a class="btn subtle" href="?page={{ page_obj.next_page_number }}">Próxima</a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  </section>
+{% endblock %}
