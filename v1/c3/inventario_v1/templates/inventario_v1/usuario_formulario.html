@@ -1,0 +1,19 @@
+{% extends "inventario_v1/base.html" %}
+{% block title %}Editar Perfil{% endblock %}
+{% block content %}
+<section class="panel small">
+  <div class="panel-header">
+    <h1>Editar meu perfil</h1>
+  </div>
+  <div class="panel-body">
+    <form method="post" class="form narrow">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="form-actions">
+        <button class="btn primary" type="submit">Salvar</button>
+        <a class="btn subtle" href="{% url 'inventario_v1:usuarios_lista' %}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

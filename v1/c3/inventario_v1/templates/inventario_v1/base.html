@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Estoque — {% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'inventario_v1/style.css' %}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="{% url 'inventario_v1:produtos_lista' %}">Inventário</a>
+      <nav class="main-nav">
+        {% if user.is_authenticated %}
+          <span class="user">Olá, {{ user.username }}</span>
+          <a class="btn subtle" href="{% url 'inventario_v1:produtos_lista' %}">Produtos</a>
+          <a class="btn subtle" href="{% url 'inventario_v1:movimentacoes_lista' %}">Movimentações</a>
+          <a class="btn subtle" href="{% url 'inventario_v1:categorias_lista' %}">Categorias</a>
+          <a class="btn subtle" href="{% url 'inventario_v1:usuarios_lista' %}">Usuários</a>
+          <a class="btn subtle" href="{% url 'inventario_v1:usuarios_editar' %}">Meu perfil</a>
+          <a class="btn danger" href="{% url 'logout' %}">Sair</a>
+        {% else %}
+          <a class="btn primary" href="{% url 'login' %}">Entrar</a>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    {% if messages %}
+      <div class="messages">
+        {% for message in messages %}
+          <div class="msg {{ message.tags }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>App de Estoque — simples • Desenvolvido com Django</small>
+    </div>
+  </footer>
+</body>
+</html>
