@@ -1,0 +1,33 @@
+{% extends "inventario_v1/base.html" %}
+{% block title %}Controle de Usuários{% endblock %}
+{% block content %}
+<section class="panel">
+  <div class="panel-header">
+    <h1>Controle de Usuários / Perfis</h1>
+  </div>
+  <div class="panel-body">
+    <table>
+      <thead><tr><th>Usuário</th><th>Papel</th><th>Ações</th></tr></thead>
+      <tbody>
+        {% for perfil in perfis %}
+          <tr>
+            <td>{{ perfil.usuario.username }}</td>
+            <td>{{ perfil.get_papel_display }}</td>
+            <td>
+              {% if can_manage_users %}
+                <a href="{% url 'inventario_v1:usuario_editar_admin' perfil.pk %}">Editar perfil</a>
+              {% elif perfil.usuario == user %}
+                <a href="{% url 'inventario_v1:usuarios_editar' %}">Editar meu perfil</a>
+              {% else %}
+                -
+              {% endif %}
+            </td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="3">Nenhum perfil encontrado.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

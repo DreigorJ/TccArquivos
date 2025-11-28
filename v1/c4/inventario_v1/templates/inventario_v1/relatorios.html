@@ -1,0 +1,28 @@
+{% extends "inventario_v1/base.html" %}
+{% block title %}Relatório de Gráficos{% endblock %}
+{% block content %}
+<section class="panel">
+  <div class="panel-header">
+    <h1>Relatório de Gráficos</h1>
+    <div class="panel-actions">
+      <small>Gerado: {{ gerado_em }}</small>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <p>O relatório foi gerado e contém os arquivos abaixo. Clique em "Visualizar HTML" para abrir o relatório completo com gráficos incorporados.</p>
+
+    <ul>
+      <li><a class="btn" href="{{ url_html }}" target="_blank">Visualizar HTML do relatório</a></li>
+      <li><a class="btn" href="{{ url_json }}" target="_blank">Download metadata (JSON)</a></li>
+    </ul>
+
+    <h3>Arquivos gerados</h3>
+    <ul>
+      {% for f in arquivos %}
+        <li><a href="{{ f }}" target="_blank">{{ f }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endblock %}

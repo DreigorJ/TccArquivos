@@ -1,0 +1,29 @@
+{"header" : {
+  "cloc_url"           : "github.com/AlDanial/cloc",
+  "cloc_version"       : "2.06",
+  "elapsed_seconds"    : 0.184012174606323,
+  "n_files"            : 33,
+  "n_lines"            : 3035,
+  "files_per_second"   : 179.335960083078,
+  "lines_per_second"   : 16493.4739046104,
+  "report_file"        : "resultados/cloc_inventario_v1.json"},
+"Python" :{
+  "nFiles": 14,
+  "blank": 355,
+  "comment": 265,
+  "code": 1769},
+"HTML" :{
+  "nFiles": 18,
+  "blank": 15,
+  "comment": 1,
+  "code": 491},
+"CSS" :{
+  "nFiles": 1,
+  "blank": 10,
+  "comment": 10,
+  "code": 119},
+"SUM": {
+  "blank": 380,
+  "comment": 276,
+  "code": 2379,
+  "nFiles": 33} }
