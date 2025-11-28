@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>{% block title %}Controle de Estoque{% endblock %}</title>
+
+  <link rel="stylesheet" href="{% static 'inventario_v3/css/styles.css' %}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="brand"><a href="{% url 'inventario_v3:root_redirect' %}">Controle de Estoque</a></h1>
+
+      <nav class="main-nav" aria-label="Principal">
+        {% if user.is_authenticated %}
+          <a class="nav-link" href="{% url 'inventario_v3:tabelas_lista' %}">Tabelas</a>
+          <a class="nav-link" href="{% url 'inventario_v3:produtos_lista' %}">Produtos</a>
+          <a class="nav-link" href="{% url 'inventario_v3:categorias_lista' %}">Categorias</a>
+          <a class="nav-link" href="{% url 'inventario_v3:relatorios' %}">Relatórios</a>
+          {% if user.is_staff %}
+            <a class="nav-link" href="{% url 'inventario_v3:usuarios_lista' %}">Usuários</a>
+            <a class="nav-link" href="{% url 'inventario_v3:gerenciar_acessos' %}">Acessos</a>
+          {% endif %}
+        {% endif %}
+      </nav>
+
+      <div class="auth-area">
+        {% if user.is_authenticated %}
+          <span class="muted">Olá, {{ user.get_username }}</span>
+          <a class="btn btn-ghost" href="{% url 'inventario_v3:logout' %}">Sair</a>
+        {% else %}
+          <a class="btn" href="{% url 'inventario_v3:login' %}">Entrar</a>
+          <a class="btn btn-outline" href="{% url 'inventario_v3:register' %}">Registrar</a>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    {% if messages %}
+      <div id="messages" class="messages">
+        {% for m in messages %}
+          <div class="alert {% if m.tags %}alert-{{ m.tags }}{% else %}alert-info{% endif %}">
+            {{ m }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <section class="content">
+      {% block content %}{% endblock %}
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© {% now "Y" %} Controle de Estoque</small>
+    </div>
+  </footer>
+</body>
+</html>

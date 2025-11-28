@@ -1,0 +1,46 @@
+{% extends "inventario_v3/base.html" %}
+{% block title %}Produtos{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <div class="card-header">
+      <h2>Produtos</h2>
+      <div class="actions">
+        <a class="btn" href="{% url 'inventario_v3:produtos_adicionar' %}">Adicionar produto</a>
+      </div>
+    </div>
+
+    {% if user.is_authenticated and user.perfil.current_tabela %}
+      <p class="muted">Tabela ativa: <strong>{{ user.perfil.current_tabela.nome }}</strong>
+         {% if user.perfil.current_tabela.descricao %} — {{ user.perfil.current_tabela.descricao }}{% endif %}
+      </p>
+    {% endif %}
+
+    {% if produtos %}
+      <table class="table">
+        <thead><tr><th>Nome</th><th>Quantidade</th><th>Preço</th><th>Tabelas</th><th>Ações</th></tr></thead>
+        <tbody>
+          {% for p in produtos %}
+            <tr>
+              <td><a class="link" href="{% url 'inventario_v3:produtos_descricao' p.pk %}">{{ p.nome }}</a></td>
+              <td>{{ p.quantidade }}</td>
+              <td>R$ {{ p.preco }}</td>
+              <td>
+                {% for t in p.tabelas.all %}
+                  {{ t.nome }}{% if not forloop.last %}, {% endif %}
+                {% empty %}—{% endfor %}
+              </td>
+              <td class="table-actions">
+                <a class="link" href="{% url 'inventario_v3:produtos_editar' p.pk %}">Editar</a>
+                <a class="link danger" href="{% url 'inventario_v3:produtos_remover' p.pk %}">Excluir</a>
+                <a class="link" href="{% url 'inventario_v3:novo_movimento' p.pk %}">Movimentar</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="muted">Nenhum produto cadastrado.</p>
+    {% endif %}
+  </div>
+{% endblock %}

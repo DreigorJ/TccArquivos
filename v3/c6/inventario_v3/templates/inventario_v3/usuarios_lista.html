@@ -1,0 +1,35 @@
+{% extends "inventario_v3/base.html" %}
+{% block title %}Usuários - Controle de Estoque{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <div class="card-header">
+      <h2>Usuários</h2>
+      <div class="actions">
+        <a class="btn" href="{% url 'inventario_v3:usuarios_adicionar' %}">Adicionar Usuário</a>
+      </div>
+    </div>
+
+    {% if users %}
+      <table class="table">
+        <thead><tr><th>Usuário</th><th>Email</th><th>Ativo</th><th>Staff</th><th></th></tr></thead>
+        <tbody>
+          {% for u in users %}
+            <tr>
+              <td>{{ u.username }}</td>
+              <td>{{ u.email }}</td>
+              <td>{{ u.is_active|yesno:"Sim,Não" }}</td>
+              <td>{{ u.is_staff|yesno:"Sim,Não" }}</td>
+              <td class="table-actions">
+                <a class="link" href="{% url 'inventario_v3:usuarios_editar' u.pk %}">Editar</a>
+                <a class="link danger" href="{% url 'inventario_v3:usuarios_remover' u.pk %}">Remover</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="muted">Nenhum usuário encontrado.</p>
+    {% endif %}
+  </div>
+{% endblock %}

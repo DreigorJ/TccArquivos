@@ -1,0 +1,49 @@
+{% extends "inventario_v3/base.html" %}
+{% block title %}Acessos às Tabelas{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <div class="card-header">
+      <h2>Acessos às Tabelas</h2>
+      <div class="actions">
+      </div>
+    </div>
+
+    <section class="subcard">
+      <h3>Adicionar acesso</h3>
+      <form method="post" novalidate class="form">
+        {% csrf_token %}
+        {% for field in form %}
+          <div class="form-row">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% for err in field.errors %}<div class="field-error">{{ err }}</div>{% endfor %}
+          </div>
+        {% endfor %}
+        <div class="form-actions">
+          <button type="submit" class="btn">Salvar Acesso</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="subcard">
+      <h3>Acessos existentes</h3>
+      {% if accesses %}
+        <table class="table">
+          <thead><tr><th>Usuário</th><th>Tabela</th><th>Nível</th></tr></thead>
+          <tbody>
+            {% for a in accesses %}
+              <tr>
+                <td>{{ a.usuario.username }}</td>
+                <td>{{ a.tabela.nome }}</td>
+                <td>{{ a.get_nivel_display }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p class="muted">Nenhum acesso registrado.</p>
+      {% endif %}
+    </section>
+  </div>
+{% endblock %}

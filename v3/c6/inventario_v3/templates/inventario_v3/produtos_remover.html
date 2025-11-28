@@ -1,0 +1,19 @@
+{% extends "inventario_v3/base.html" %}
+{% block title %}Confirmar exclusão{% endblock %}
+
+{% block content %}
+  <!-- template: produtos_remover STYLED v2 -->
+  <div class="card narrow">
+    <h2>Confirmar exclusão do produto</h2>
+
+    <p>Tem certeza que deseja remover: <strong>{{ object }}</strong>?</p>
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-actions">
+        <button type="submit" class="btn btn-danger">Sim, excluir</button>
+        <a class="btn btn-outline" href="{% url 'inventario_v3:produtos_descricao' object.pk %}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

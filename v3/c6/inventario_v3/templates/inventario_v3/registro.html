@@ -1,0 +1,34 @@
+{% extends "inventario_v3/base.html" %}
+{% block title %}Registro de Usuário{% endblock %}
+
+{% block content %}
+  <!-- Wrapper que cria o círculo branco e centraliza o card -->
+  <div class="circle-wrap">
+    <div class="card card-inner" style="background-color: transparent;">
+      <h2>Criar conta</h2>
+
+      <form method="post" novalidate class="form">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+          <div class="alert alert-error">{{ form.non_field_errors }}</div>
+        {% endif %}
+
+        {% for field in form %}
+          <div class="form-row">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% for err in field.errors %}<div class="field-error">{{ err }}</div>{% endfor %}
+          </div>
+        {% endfor %}
+
+        <div class="form-actions">
+          <button type="submit" class="btn">Criar conta e entrar</button>
+          <a class="btn btn-outline" href="{% url 'inventario_v3:login' %}">Já tenho conta</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- rodapé já existente -->
+  <div style="height:24px"></div>
+{% endblock %}

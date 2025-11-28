@@ -1,0 +1,29 @@
+{% extends "inventario_v3/base.html" %}
+{% block title %}{% if object %}Editar Usuário{% else %}Novo Usuário{% endif %}{% endblock %}
+
+{% block content %}
+  <div class="card narrow">
+    <h2>{% if object %}Editar Usuário{% else %}Novo Usuário{% endif %}</h2>
+
+    <form method="post" class="form" novalidate>
+      {% csrf_token %}
+      {% if object %}
+        <p class="muted">Deixe os campos de senha em branco para não alterar a senha atual.</p>
+      {% endif %}
+
+      {% for field in form %}
+        <div class="form-row">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% if field.help_text %}<small class="muted">{{ field.help_text }}</small>{% endif %}
+          {% for err in field.errors %}<div class="field-error">{{ err }}</div>{% endfor %}
+        </div>
+      {% endfor %}
+
+      <div class="form-actions">
+        <button type="submit" class="btn">Salvar</button>
+        <a class="btn btn-outline" href="{% url 'inventario_v3:usuarios_lista' %}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}
