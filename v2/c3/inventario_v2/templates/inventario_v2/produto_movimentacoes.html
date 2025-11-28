@@ -1,0 +1,60 @@
+{% extends "inventario_v2/base.html" %}
+{% block title %}Histórico — {{ produto.nome }}{% endblock %}
+{% block content %}
+  <section class="panel">
+    <div class="panel-header">
+      <h1>Histórico de movimentações — {{ produto.nome }}</h1>
+      <div class="panel-actions">
+        <p>Quantidade atual: <strong>{{ produto.quantidade }}</strong></p>
+        <!-- Botão que abre o formulário de nova movimentação já com o produto pré-selecionado -->
+        <a class="btn primary" href="{% url 'inventario_v2:movimentacoes_adicionar' %}?produto={{ produto.pk }}">Registrar entrada/saída</a>
+        <a class="btn subtle" href="{% url 'inventario_v2:produtos_lista' %}">Voltar aos produtos</a>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Tipo</th>
+            <th class="center">Quantidade</th>
+            <th>Usuário</th>
+            <th>Descrição</th>
+            <th class="actions-col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for m in movimentacoes %}
+            <tr>
+              <td>{{ m.criado_em }}</td>
+              <td>{{ m.get_tipo_display }}</td>
+              <td class="center">{{ m.quantidade }}</td>
+              <td>{{ m.usuario.username }}</td>
+              <td>{{ m.descricao }}</td>
+              <td class="actions-col">
+                <a class="link" href="{% url 'inventario_v2:movimentacoes_detalhe' m.pk %}">Ver</a>
+                <span class="sep">|</span>
+                <a class="link danger" href="{% url 'inventario_v2:movimentacoes_remover' m.pk %}">Excluir</a>
+              </td>
+            </tr>
+          {% empty %}
+            <tr><td colspan="6" class="empty">Sem movimentações para este produto.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {% if is_paginated %}
+      <nav class="pagination">
+        {% if page_obj.has_previous %}
+          <a class="btn subtle" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+        {% endif %}
+        <span class="page-info">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+        {% if page_obj.has_next %}
+          <a class="btn subtle" href="?page={{ page_obj.next_page_number }}">Próxima</a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  </section>
+{% endblock %}
