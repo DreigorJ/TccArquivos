@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Novo Movimento</title>
+  </head>
+  <body>
+    {% extends "inventario_v3/base.html" %}
+    {% block title %}Registrar Movimentação{% endblock %}
+
+    {% block content %}
+      <h2>Registrar Movimentação{% if produto %} — {{ produto.nome }}{% endif %}</h2>
+
+      <form method="post" novalidate>
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+          <div class="alert alert-error">{{ form.non_field_errors }}</div>
+        {% endif %}
+
+        <div>
+          {% for field in form %}
+            <div class="form-row">
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {{ field }}
+              {% if field.errors %}
+                <div class="alert alert-error">{{ field.errors|join:", " }}</div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+
+        <div style="margin-top:0.6rem">
+          <button type="submit" class="btn btn-success">Registrar</button>
+          {% if produto %}
+            <a class="btn btn-secondary" href="{% url 'inventario_v3:produtos_descricao' produto.pk %}">Cancelar</a>
+          {% else %}
+            <a class="btn btn-secondary" href="{% url 'inventario_v3:produtos_lista' %}">Voltar</a>
+          {% endif %}
+        </div>
+      </form>
+    {% endblock %}
+  </body>
+</html>

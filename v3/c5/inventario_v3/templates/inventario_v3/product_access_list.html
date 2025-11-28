@@ -1,0 +1,55 @@
+{% extends "inventario_v3/base.html" %}
+{% block title %}Acessos por Produto{% endblock %}
+
+{% block content %}
+  <h2>Acessos por Produto</h2>
+
+  <p>
+    <a class="btn" href="{% url 'inventario_v3:usuarios_lista' %}">Usuários</a>
+  </p>
+
+  <section style="margin-bottom:1.5rem">
+    <h3>Adicionar acesso</h3>
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {% for field in form %}
+        <div class="form-row" style="max-width:480px;">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% for err in field.errors %}
+            <div class="alert alert-error">{{ err }}</div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+      <div style="margin-top:0.6rem">
+        <button type="submit" class="btn">Salvar Acesso</button>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h3>Acessos existentes</h3>
+    {% if accesses %}
+      <table>
+        <thead>
+          <tr>
+            <th>Usuário</th>
+            <th>Produto</th>
+            <th>Nível</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for a in accesses %}
+            <tr>
+              <td>{{ a.user.username }}</td>
+              <td>{{ a.produto.nome }}</td>
+              <td>{{ a.get_level_display }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>Nenhum acesso registrado.</p>
+    {% endif %}
+  </section>
+{% endblock %}

@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Adicionar Produto</title>
+  </head>
+  <body>
+    {% extends "inventario_v3/base.html" %}
+    {% block title %}Adicionar Produto{% endblock %}
+
+    {% block content %}
+      <h2>Adicionar Produto</h2>
+
+      <form method="post" novalidate>
+        {% csrf_token %}
+
+        {# non-field errors #}
+        {% if form.non_field_errors %}
+          <div class="alert alert-error">
+            {{ form.non_field_errors }}
+          </div>
+        {% endif %}
+
+        {# render fields and per-field errors #}
+        <div>
+          {% for field in form %}
+            <div class="form-row">
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {{ field }}
+              {% if field.help_text %}
+                <small class="help-text">{{ field.help_text }}</small>
+              {% endif %}
+              {% if field.errors %}
+                <div class="alert alert-error">{{ field.errors|join:", " }}</div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+
+        <div style="margin-top:0.6rem">
+          <button type="submit" class="btn btn-success">Salvar</button>
+          <a class="btn btn-secondary" href="{% url 'inventario_v3:produtos_lista' %}">Cancelar</a>
+        </div>
+      </form>
+    {% endblock %}
+  </body>
+</html>

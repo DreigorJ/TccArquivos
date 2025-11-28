@@ -1,0 +1,40 @@
+{% extends "inventario_v3/base.html" %}
+{% load static %}
+{% block title %}Categorias{% endblock %}
+
+{% block content %}
+  <h1>Categorias</h1>
+
+  <p>
+    <a class="btn btn-primary" href="{% url 'inventario_v3:categorias_adicionar' %}">Adicionar categoria</a>
+    <a class="btn btn-secondary" href="{% url 'inventario_v3:relatorios' %}">Relatórios</a>
+  </p>
+
+  {% if categorias %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Ativo</th>
+          <th>Criada em</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cat in categorias %}
+        <tr>
+          <td>{{ cat.nome }}</td>
+          <td>{{ cat.ativo|yesno:"Sim,Não" }}</td>
+          <td>{{ cat.criado_em|date:"Y-m-d H:i" }}</td>
+          <td>
+            <a class="btn btn-sm btn-outline-primary" href="{% url 'inventario_v3:categorias_editar' cat.pk %}">Editar</a>
+            <a class="btn btn-sm btn-outline-danger" href="{% url 'inventario_v3:categorias_remover' cat.pk %}">Remover</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>Nenhuma categoria cadastrada.</p>
+  {% endif %}
+{% endblock %}

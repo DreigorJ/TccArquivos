@@ -1,0 +1,22 @@
+{% extends "inventario_v3/base.html" %}
+{% block content %}
+  <h2>{{ produto.nome }}</h2>
+  <p>{{ produto.descricao }}</p>
+  <p><strong>Quantidade:</strong> {{ produto.quantidade }}</p>
+  <p><strong>Preço:</strong> R$ {{ produto.price }}</p>
+  <h3>Movimentações</h3>
+  <ul>
+    {% for m in produto.movimentos.all %}
+      <li>
+        {{ m.criado_em|date:"Y-m-d H:i" }} -
+        {% if m.tipo_movimento == 'ENTRADA' %}Entrada{% else %}Saída{% endif %}:
+        {{ m.quantidade }}
+        {% if m.motivo %}- {{ m.motivo }}{% endif %}
+        {% if m.usuario %} (por {{ m.usuario }}){% endif %}
+      </li>
+    {% empty %}
+      <li>Sem movimentações.</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'inventario_v3:novo_movimento' produto.pk %}">Registrar movimentação</a>
+{% endblock %}
