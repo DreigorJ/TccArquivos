@@ -1,0 +1,21 @@
+{% extends "inventario_v1/base.html" %}
+{% block title %}Produto{% endblock %}
+{% block content %}
+  <section class="panel">
+    <div class="panel-header">
+      <h1>{% if object %}Editar Produto{% else %}Adicionar Produto{% endif %}</h1>
+    </div>
+
+    <form class="form" method="post">
+      {% csrf_token %}
+      <div class="form-grid">
+        {{ form.as_p }}
+      </div>
+
+      <div class="form-actions">
+        <button class="btn primary" type="submit">Salvar</button>
+        <a class="btn subtle" href="{% url 'inventario_v1:produtos_lista' %}">Cancelar</a>
+      </div>
+    </form>
+  </section>
+{% endblock %}

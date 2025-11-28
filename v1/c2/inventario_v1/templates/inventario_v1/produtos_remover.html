@@ -1,0 +1,15 @@
+{% extends "inventario_v1/base.html" %}
+{% block title %}Confirmar Exclusão{% endblock %}
+{% block content %}
+  <section class="panel small">
+    <h2>Confirmar exclusão</h2>
+    <p>Tem certeza que deseja excluir "<strong>{{ object }}</strong>"?</p>
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-actions">
+        <button class="btn danger" type="submit">Sim, excluir</button>
+        <a class="btn subtle" href="{% url 'inventario_v1:produtos_lista' %}">Cancelar</a>
+      </div>
+    </form>
+  </section>
+{% endblock %}

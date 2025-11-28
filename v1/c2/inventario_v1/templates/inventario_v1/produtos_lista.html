@@ -1,0 +1,69 @@
+{% extends "inventario_v1/base.html" %}
+{% block title %}Lista de Produtos{% endblock %}
+{% block content %}
+  <section class="panel">
+    <div class="panel-header">
+      <h1>Produtos</h1>
+      <div class="panel-actions">
+        <form class="search-form" method="get">
+          <input name="q" type="search" placeholder="Buscar por nome…" value="{{ request.GET.q }}">
+          <button class="btn" type="submit">Buscar</button>
+        </form>
+        <a class="btn subtle" href="{% url 'inventario_v1:movimentacoes_lista' %}">Movimentações</a>
+        <a class="btn primary" href="{% url 'inventario_v1:produtos_adicionar' %}">Adicionar produto</a>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Quantidade</th>
+            <th>Preço</th>
+            <th class="center">Mov.</th>
+            <th class="actions-col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for p in produtos %}
+            <tr>
+              <td>
+                <a class="link" href="{% url 'inventario_v1:produtos_descricao' p.pk %}">
+                  {{ p.nome }}
+                </a>
+              </td>
+              <td class="center">{{ p.quantidade }}</td>
+              <td class="right">R$ {{ p.preco }}</td>
+              <td class="center">
+                <a class="link" href="{% url 'inventario_v1:produtos_descricao' p.pk %}">
+                  Histórico ({{ p.movimentacoes.count }})
+                </a>
+              </td>
+              <td class="actions-col">
+                <a class="btn subtle" href="{% url 'inventario_v1:movimentacoes_adicionar' %}?produto={{ p.pk }}">Movimentar</a>
+                <a class="link" href="{% url 'inventario_v1:produtos_editar' p.pk %}">Editar</a>
+                <span class="sep">|</span>
+                <a class="link danger" href="{% url 'inventario_v1:produtos_remover' p.pk %}">Excluir</a>
+              </td>
+            </tr>
+          {% empty %}
+            <tr><td colspan="5" class="empty">Nenhum produto encontrado.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {% if is_paginated %}
+      <nav class="pagination">
+        {% if page_obj.has_previous %}
+          <a class="btn subtle" href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Anterior</a>
+        {% endif %}
+        <span class="page-info">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+        {% if page_obj.has_next %}
+          <a class="btn subtle" href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Próxima</a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  </section>
+{% endblock %}

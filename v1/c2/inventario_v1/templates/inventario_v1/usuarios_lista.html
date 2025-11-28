@@ -1,0 +1,30 @@
+{% extends "inventario_v1/base.html" %}
+{% block title %}Usuários{% endblock %}
+{% block content %}
+<section class="panel">
+  <div class="panel-header">
+    <h1>Usuários</h1>
+  </div>
+  <div class="table-wrap">
+    <table class="styled-table">
+      <thead><tr><th>Usuário</th><th>Email</th><th>Nome</th><th>Ações</th></tr></thead>
+      <tbody>
+        {% for u in usuarios %}
+        <tr>
+          <td>{{ u.username }}</td>
+          <td>{{ u.email }}</td>
+          <td>{{ u.get_full_name }}</td>
+          <td class="actions-col">
+            {% if u == request.user %}
+              <a class="link" href="{% url 'inventario_v1:usuarios_editar' %}">Meu perfil</a>
+            {% endif %}
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4" class="empty">Nenhum usuário.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}
