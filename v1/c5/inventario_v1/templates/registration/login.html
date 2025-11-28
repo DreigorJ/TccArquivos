@@ -1,0 +1,24 @@
+{% extends "inventario_v1/base.html" %}
+{% block title %}Entrar{% endblock %}
+{% block content %}
+<section class="panel">
+  <div class="panel-header"><h1>Entrar</h1></div>
+  <div class="panel-body">
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      <p>
+        <label for="id_username">Usuário</label><br>
+        <input type="text" name="username" id="id_username" required autofocus>
+      </p>
+      <p>
+        <label for="id_password">Senha</label><br>
+        <input type="password" name="password" id="id_password" required>
+      </p>
+      <p>
+        <button class="btn primary" type="submit">Entrar</button>
+        <a class="btn subtle" href="{% url 'password_reset' %}">Esqueci minha senha</a>
+      </p>
+    </form>
+  </div>
+</section>
+{% endblock %}

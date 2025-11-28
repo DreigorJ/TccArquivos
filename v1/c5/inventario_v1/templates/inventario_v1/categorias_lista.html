@@ -1,0 +1,34 @@
+{% extends "inventario_v1/base.html" %}
+{% block title %}Categorias{% endblock %}
+{% block content %}
+<section class="panel">
+  <div class="panel-header">
+    <h1>Categorias</h1>
+    <div class="panel-actions">
+      <a class="btn" href="{% url 'inventario_v1:categorias_adicionar' %}">Adicionar categoria</a>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table class="styled-table">
+      <thead>
+        <tr><th>Nome</th><th>Descrição</th><th>Ações</th></tr>
+      </thead>
+      <tbody>
+        {% for categoria in categorias %}
+        <tr>
+          <td>{{ categoria.nome }}</td>
+          <td>{{ categoria.descricao|default:"—" }}</td>
+          <td class="actions-col">
+            <a class="link" href="{% url 'inventario_v1:categorias_editar' categoria.pk %}">Editar</a>
+            <a class="link" href="{% url 'inventario_v1:categorias_remover' categoria.pk %}">Remover</a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="3" class="empty">Nenhuma categoria cadastrada.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

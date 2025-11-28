@@ -1,0 +1,17 @@
+{% extends "inventario_v1/base.html" %}
+{% block title %}Registrar novo usuário{% endblock %}
+{% block content %}
+<section class="panel">
+  <div class="panel-header"><h1>Registrar nova conta</h1></div>
+  <div class="panel-body">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="form-actions">
+        <button class="btn primary" type="submit">Criar conta</button>
+        <a class="btn subtle" href="{% url 'login' %}">Já tenho conta / Entrar</a>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

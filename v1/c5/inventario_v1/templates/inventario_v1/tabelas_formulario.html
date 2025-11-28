@@ -1,0 +1,17 @@
+{% extends "inventario_v1/base.html" %}
+{% block title %}Formulário de Tabela{% endblock %}
+{% block content %}
+<section class="panel">
+  <div class="panel-header"><h1>{% if object %}Editar{% else %}Adicionar{% endif %} Tabela</h1></div>
+  <div class="panel-body">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="form-actions">
+        <button class="btn primary" type="submit">Salvar</button>
+        <a class="btn subtle" href="{% url 'inventario_v1:tabelas_lista' %}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

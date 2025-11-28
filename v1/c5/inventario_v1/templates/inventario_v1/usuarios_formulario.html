@@ -1,0 +1,24 @@
+{% extends "inventario_v1/base.html" %}
+{% block title %}Editar Perfil de Usuário{% endblock %}
+{% block content %}
+<section class="panel">
+  <div class="panel-header"><h1>Editar Perfil</h1></div>
+  <div class="panel-body">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <p>
+        {% if form.nova_senha or form.confirmar_senha %}
+          <small>Informe uma nova senha apenas se desejar alterá-la. Senhas devem ter no mínimo 6 caracteres.</small>
+        {% endif %}
+      </p>
+
+      <div class="form-actions">
+        <button class="btn primary" type="submit">Salvar</button>
+        <a class="btn subtle" href="{% url 'inventario_v1:usuarios_lista' %}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}

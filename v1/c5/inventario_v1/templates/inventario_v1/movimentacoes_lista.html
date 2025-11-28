@@ -1,0 +1,51 @@
+{% extends "inventario_v1/base.html" %}
+{% block title %}Movimentações{% endblock %}
+{% block content %}
+<section class="panel">
+  <div class="panel-header">
+    <h1>Movimentações</h1>
+    <div class="panel-actions">
+      <form class="search-form" method="get">
+        <select name="produto">
+          <option value="">Todos produtos</option>
+          {% for p in products_list %}
+            <option value="{{ p.pk }}" {% if selected_prod|stringformat:"s" == p.pk|stringformat:"s" %}selected{% endif %}>{{ p.nome }}</option>
+          {% endfor %}
+        </select>
+        <button class="btn" type="submit">Filtrar</button>
+      </form>
+      <a class="btn primary" href="{% url 'inventario_v1:movimentacoes_adicionar' %}">Registrar movimentação</a>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table class="styled-table">
+      <thead>
+        <tr><th>Produto</th><th>Tipo</th><th>Quantidade</th><th>Usuário</th><th>Quando</th><th>Ações</th></tr>
+      </thead>
+      <tbody>
+        {% for m in movimentacoes %}
+        <tr>
+          <td>{{ m.produto.nome }}</td>
+          <td>{{ m.get_tipo_display }}</td>
+          <td class="center">{{ m.quantidade }}</td>
+          <td>
+            {% if m.usuario %}
+              {{ m.usuario.username }}
+            {% else %}
+              —
+            {% endif %}
+          </td>
+          <td>{{ m.criado_em|date:"d/m/Y H:i" }}</td>
+          <td class="actions-col">
+            <a class="link danger" href="{% url 'inventario_v1:movimentacoes_remover' m.pk %}">Remover</a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="6" class="empty">Nenhuma movimentação registrada.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}

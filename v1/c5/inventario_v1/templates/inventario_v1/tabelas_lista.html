@@ -1,0 +1,27 @@
+{% extends "inventario_v1/base.html" %}
+{% block title %}Tabelas de Produtos{% endblock %}
+{% block content %}
+<section class="panel">
+  <div class="panel-header">
+    <h1>Tabelas de Produtos</h1>
+    <a class="btn" href="{% url 'inventario_v1:tabela_adicionar' %}">Adicionar tabela</a>
+  </div>
+  <div class="panel-body">
+    <ul>
+      {% for t in tabelas %}
+        <li>{{ t.nome }} — <a href="{% url 'inventario_v1:tabela_editar' t.pk %}">editar</a> • <a href="{% url 'inventario_v1:tabela_remover' t.pk %}">remover</a></li>
+      {% empty %}
+        <li>Nenhuma tabela cadastrada.</li>
+      {% endfor %}
+    </ul>
+    {% if is_paginated %}
+      <!-- paginador simples -->
+      <div class="pagination">
+        {% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}">Anterior</a>{% endif %}
+        <span>Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+        {% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}">Próxima</a>{% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

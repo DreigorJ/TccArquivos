@@ -1,0 +1,19 @@
+{% extends "inventario_v1/base.html" %}
+{% block title %}Confirmar remoção{% endblock %}
+{% block content %}
+<section class="panel small">
+  <div class="panel-header">
+    <h2>Remover produto</h2>
+  </div>
+  <div class="panel-body">
+    <p>Tem certeza que deseja remover o produto: <strong>{{ object }}</strong>?</p>
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-actions">
+        <button class="btn danger" type="submit">Confirmar remoção</button>
+        <a class="btn subtle" href="{% url 'inventario_v1:produtos_lista' %}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</section>
+{% endblock %}
